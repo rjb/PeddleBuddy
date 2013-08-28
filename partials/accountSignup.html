@@ -1,0 +1,19 @@
+<header class="bar-title">
+	<a class="button" href="#/welcome">
+    	Cancel
+  	</a>
+  	<h1 class="title">Get Started</h1>
+</header>
+
+<div class="content content-padded">
+	<br/>
+	<form ng-submit="signUp()" name="signupForm">
+		<input type="email" name="email" ng-model="newUser.email" placeholder="Email" required />
+		<input type="password" name="password" ng-model="newUser.password" placeholder="Password" required />
+		<input type="text" name="telephone" ng-model="newUser.telephone" placeholder="555-555-5555" required />
+		<input type="text" name="betacode" ng-model="newUser.betacode" placeholder="Invite code" required />
+		
+		<br /><br />		
+		<button type="submit" class="btn button button-block" ng-disabled="signupForm.$invalid">Get Started</button>
+	</form>
+</div>

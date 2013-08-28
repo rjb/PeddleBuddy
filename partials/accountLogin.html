@@ -1,0 +1,19 @@
+<header class="bar-title">
+    <a class="button" href="#/welcome">
+    	Cancel
+  	</a>
+  	<h1 class="title">Sign In</h1>
+</header>
+
+<div class="content content-padded">
+    <br/>
+	<form ng-submit="login()" name="loginForm">
+		<input type="email" name="email" ng-model="credentials.username" placeholder="Email" required />
+		<input type="password" name="password" ng-model="credentials.password" placeholder="Password" required />
+		
+		<br /><br />		
+		<button type="submit" class="btn button button-block" ng-disabled="loginForm.$invalid">Sign In</button>
+	</form>
+	<br />
+    <p class="center"><a href="#/reset_password">Forgot your password?</a></p>
+</div>

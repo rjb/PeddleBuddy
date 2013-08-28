@@ -1,0 +1,19 @@
+<header class="bar-title">
+  	<a class="button-prev" href="#/listings">
+    	Back
+  	</a>
+  	<h1 class="title">PeddleBuddy</h1>
+</header>
+
+<div class="content content-padded">
+	<div ng-init="getListing()">
+		<div ng-if="showLoadingWidget()" class="center"><img ng-src="{{ spinningWheelPath }}" /><br/>Loading...</div>
+		
+		<div ng-if="!showLoadingWidget()">
+			<h3>{{ listing.get('sellerDescription') }} {{ listing.get('sellerPrice') | currency }}</h3>
+			<img ng-src="{{ listing.get('photos')[0].get('photo').url() }}" width="250px" /><br />
+			<br />
+			<a class="button-negative button-block" confirm-action="Are you sure you want to cancel this sale?">Cancel sale</a>
+		</div>
+	</div>
+</div>

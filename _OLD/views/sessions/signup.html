@@ -1,0 +1,21 @@
+<header class="bar-title">
+	<a class="button-prev" href="#/login">
+    	Back
+  	</a>
+  	<h1 class="title">THREADHOP</h1>
+</header>
+
+<div class="content content-padded">
+	<div class="center">
+		<p>Signup!</p>
+	</div>
+	<br/>
+	<form ng-submit="signUp()">
+		<input type="text" name="email" ng-model="newUser.email" placeholder="Email" required>
+		<input type="password" name="password" ng-model="newUser.password" placeholder="Password" required>
+		<input type="text" name="telephone" ng-model="newUser.telephone" placeholder="555-555-5555" required>
+		
+		<br /><br />		
+		<button type="submit" class="btn button button-block">Sign Up</button>
+	</form>
+</div>
