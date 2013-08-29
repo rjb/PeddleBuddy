@@ -35,5 +35,30 @@
             app.initialize();
         </script>
         
+        <style type="text/css" media="screen">
+            #welcome-page {
+                background: url('assets/images/pb-welcome.png') no-repeat;
+                background-size: 320px 480px;
+            }
+            @media (-webkit-min-device-pixel-ratio: 2) {
+                #welcome-page {
+                    background: url('assets/images/pb-welcome-568h@2x.png') no-repeat;
+                    background-size: 320px 580px;
+                }
+            }
+            
+            #welcome-logo {
+                background: url('assets/images/pb-welcome-logo.png') no-repeat center;
+                background-size: 225px 60px;
+                height: 60px;
+            }
+            @media (-webkit-min-device-pixel-ratio: 2) {
+                #welcome-logo {
+                    background: url('assets/images/pb-welcome-logo-@2x.png') no-repeat center;
+                    background-size: 225px 60px;
+                    height: 60px;
+                }
+            }
+        </style>
 	</body>
 </html>
