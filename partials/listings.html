@@ -1,4 +1,4 @@
-<header class="bar-title" ng-controller="WelcomeController">
+<header class="bar-title" ng-controller="NavigationController">
     <a class="button" ng-click="back()">
     	Home
   	</a>
@@ -12,7 +12,7 @@
     <div ng-show="listings == 0 && !showLoadingWidget()" class="center"><br/><br/><h3>No listings yet</h3></div>
 	<ul class="list">
 		<li ng-repeat="listing in listings">
-			<a ng-click="slidePage('/listings/{{ listing.id }}', 'slide')" ng-controller="WelcomeController">
+			<a ng-click="slidePage('/listings/{{ listing.id }}', 'slide')" ng-controller="NavigationController">
 				<table>
 					<tr>
 						<td>

@@ -1,14 +1,16 @@
-automizeApp.controller('WelcomeController', function($scope, $location, NavigationService) {
-    $scope.shouldHide = function() {
-        $scope.hidden = false;
-    };
-                       
+automizeApp.controller('NavigationController', function($scope, NavigationService) {
     $scope.slidePage = function (path,type) {
         NavigationService.slidePage(path,type);
     };
-                       
+
     $scope.back = function () {
         NavigationService.back();
+    };
+});
+
+automizeApp.controller('WelcomeController', function($scope, $location, NavigationService) {
+    $scope.shouldHide = function() {
+        $scope.hidden = false;
     };
 });
 
@@ -37,7 +39,7 @@ automizeApp.controller('LoginController', function($scope, $location, ParseServi
 	};
 	
 	$scope.login = function() {
-        if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
+        if($scope.loginForm.email.$error.required || $scope.loginForm.email.$error.email) {
             navigator.notification.alert("Please check your email address.", function() {}, "Invalid Email Address", "OK");
         } else {
             ParseService.login($scope.credentials, function() {
