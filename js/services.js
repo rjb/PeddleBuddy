@@ -1,6 +1,6 @@
 'use strict';
 
-automizeApp.factory('NavigationService', function($navigate) {
+automizeApp.factory('Navigation', function($navigate) {
     return {
         slidePage: function (path,type) {
             $navigate.go(path,type);
@@ -12,7 +12,7 @@ automizeApp.factory('NavigationService', function($navigate) {
 });
 
 // Loading Spindle Widget
-automizeApp.factory('WidgetService', function() {
+automizeApp.factory('Widget', function() {
 	// Simple loading widget service. Shows a spining wheel for loading list views.
 
 	// Set inital state
@@ -33,8 +33,18 @@ automizeApp.factory('WidgetService', function() {
 	};
 });
 
+automizeApp.factory('Notification', function() {
+    return {
+        emailErrorTitle: "Invalid Email Address",
+        emailErrorMessage: "Please check your email address.",
+        
+        passwordErrorTitle: "Password Is Too Short",
+        passwordErrorMessage: "It must be at least 6 characters."
+    };
+});
+
 // Parse Service
-automizeApp.factory('ParseService', function() {
+automizeApp.factory('Parse', function() {
 	Parse.initialize("HtjnRGYhpDYLR0nr9RpzHaVoeTFPYzipwGUaqcnr", "udOXbcxu1ewji0D2BziyRFd7EnrNyLkrWcMd4vEo");
 						
 	return {
