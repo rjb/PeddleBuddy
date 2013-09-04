@@ -1,5 +1,16 @@
 'use strict';
 
+automizeApp.factory('NavigationService', function($navigate) {
+    return {
+        slidePage: function (path,type) {
+            $navigate.go(path,type);
+        },
+        back: function () {
+            $navigate.back();
+        }
+    }
+});
+
 // Loading Spindle Widget
 automizeApp.factory('WidgetService', function() {
 	// Simple loading widget service. Shows a spining wheel for loading list views.
@@ -104,7 +115,7 @@ automizeApp.factory('ParseService', function() {
 			Parse.User.logIn(_credentials.username.toLowerCase(), _credentials.password).then(function(user) {
   				callback(user);
 			}, function(error) {
-  				navigator.notification.alert(error.message,function() {},"Oops!","Close");
+  				navigator.notification.alert("Please check your email address and password.",function() {},"Login Error","OK");
 			});
 		},
 		logout: function(callback) {
@@ -112,10 +123,10 @@ automizeApp.factory('ParseService', function() {
 		},
         resetPassword: function(userEmail, callback) {
             Parse.User.requestPasswordReset(userEmail.toLowerCase()).then(function() {
-                navigator.notification.alert("Please check your email.",function() {},"Reset instructions sent","OK");
+                navigator.notification.alert("Please check your inbox.",function() {},"Reset instructions sent","OK");
                 callback()
             }, function(error) {
-                navigator.notification.alert(error.message,function() {},"Oops!","Close");
+                navigator.notification.alert("Please check your email address.",function() {},"Reset Error","Close");
             });
         },
 		signUp: function(_newUser, callback) {

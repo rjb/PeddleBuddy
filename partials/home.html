@@ -3,24 +3,24 @@
 </header>
 
 <div class="content">
-	<div class="content-padded">
-    <br />
-    <a href="#/sell" class="button-block" style="padding:35px 0;">
-        Sell an item
-    </a>
-  </div>
+    <div class="content-padded" ng-controller="WelcomeController">
+        <br />
+        <a ng-click="slidePage('/sell', 'modal')" class="button-block" style="padding:35px 0;">
+            Sell an item
+        </a>
+    </div>
   
-  <br/><br/>
+    <br/><br/>
   
-  <ul class="list inset home-list" style="font-weight:bold;">
+  <ul class="list inset home-list" style="font-weight:bold;" ng-controller="WelcomeController">
     <li>
-      <a href="#/listings">
+      <a ng-click="slidePage('/listings', 'slide')">
         Selling
         <span class="chevron"></span>
       </a>
     </li>
     <li>
-      <a href="#/account">
+      <a ng-click="slidePage('account', 'slide')">
         Account
         <span class="chevron"></span>
       </a>

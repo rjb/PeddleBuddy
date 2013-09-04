@@ -5,19 +5,12 @@
 		<h3 style="color:#E1FEEE;">You have better things to do...<br/>We sell your stuff for you!</h3>
 	</div>
     
-	<br/><br/><br/><br/>
-    <ul class="list inset home-list" style="font-weight:bold;">
-        <li>
-            <a href="#/signup">
-                Get Started
-                <span class="chevron"></span>
-            </a>
-        </li>
-        <li>
-            <a href="#/login">
-                Sign In
-                <span class="chevron"></span>
-            </a>
-        </li>
-    </ul>
+    <div class="welcome-btns">
+        <a ng-click="slidePage('/signup','slide')" class="btn button button-block get-started">
+            Get Started
+        </a>
+        <a ng-click="slidePage('/login','slide')" class="btn button button-block">
+            Sign In
+        </a>
+    </div>
 </div>

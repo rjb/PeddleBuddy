@@ -1,13 +1,18 @@
-<header class="bar-title">
+<header class="bar-title" ng-controller="WelcomeController">
+    <a class="button" ng-click="back()">
+    	Home
+  	</a>
   	<h1 class="title">Your Listings</h1>
 </header>
 
 <div class="content">
-    <div ng-if="showLoadingWidget()" class="center"><br/><br/><img ng-src="{{ spinningWheelPath }}" /><br/>Loading...</div>
+    <div ng-if="showLoadingWidget()" class="center"><br/><br/><img ng-src="{{ spinningWheelPath }}" />
+        <br/>Loading...
+    </div>
     <div ng-show="listings == 0 && !showLoadingWidget()" class="center"><br/><br/><h3>No listings yet</h3></div>
 	<ul class="list">
 		<li ng-repeat="listing in listings">
-			<a href="#/listings/{{ listing.id }}">
+			<a ng-click="slidePage('/listings/{{ listing.id }}', 'slide')" ng-controller="WelcomeController">
 				<table>
 					<tr>
 						<td>
@@ -29,26 +34,3 @@
 		</li>
 	</ul>
 </div>
-
-<nav class="bar-tab">
-  <ul class="tab-inner">
-    <li class="tab-item">
-      <a href="#/">
-	    <img class="tab-icon" src="assets/images/house.png">
-        <div class="tab-label">Home</div>
-      </a>
-    </li>
-    <li class="tab-item">
-      <a href="#/sell">
-	    <img class="tab-icon" src="assets/images/camera.png">
-        <div class="tab-label">+Sell+</div>
-      </a>
-    </li>
-    <li class="tab-item active">
-      <a href="#/listings">
-	    <img class="tab-icon" src="assets/images/graph_bar_trend.png">
-        <div class="tab-label">Listings</div>
-      </a>
-    </li>
-  </ul>
-</nav>

@@ -1,56 +1,78 @@
-automizeApp.controller('WelcomeController', function($scope, $location) {
+automizeApp.controller('WelcomeController', function($scope, $location, NavigationService) {
     $scope.shouldHide = function() {
         $scope.hidden = false;
     };
-});
-
-automizeApp.controller('HomeController', function($scope, $location, ParseService) {
-	$scope.logout = function() {
-		ParseService.logout();
-		$location.path('/welcome');
-	};
-});
-
-automizeApp.controller('LoginController', function($scope, $location, ParseService) {
-	$scope.credentials = { username: "", password: "" };
-	
-	$scope.signUp = function() {
-		ParseService.signUp($scope.newUser, function() {
-			$scope.$apply(function() {
-				$location.path('/');
-			})
-		});
-	};
-	
-	$scope.login = function() {
-		ParseService.login($scope.credentials, function() {
-			$scope.$apply(function() {
-				$location.path('/');
-			})
-		});
-	};
                        
-    $scope.resetPassword = function() {
-        ParseService.resetPassword($scope.userEmail, function() {
-            $scope.$apply(function() {
-                $location.path('/login');
-            })
-        })
+    $scope.slidePage = function (path,type) {
+        NavigationService.slidePage(path,type);
+    };
+                       
+    $scope.back = function () {
+        NavigationService.back();
     };
 });
 
-automizeApp.controller('ListingsController', function($scope, $routeParams, $location, ParseService, WidgetService) {
+automizeApp.controller('HomeController', function($scope, $location, ParseService, NavigationService) {
+	$scope.logout = function() {
+		ParseService.logout();
+		NavigationService.slidePage('/welcome','slide');
+	};
+});
+
+automizeApp.controller('LoginController', function($scope, $location, ParseService, NavigationService) {
+	$scope.credentials = { username: "", password: "" };
+	             
+	$scope.signUp = function() {
+        if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
+            navigator.notification.alert("Please check your email address.", function() {}, "Invalid Email Address", "OK");
+        } else if($scope.signupForm.password.$error.required || $scope.signupForm.password.$error.minlength) {
+            navigator.notification.alert("Password must be at least 6 characters.", function() {}, "Password Is Too Short", "OK");
+        } else {
+            ParseService.signUp($scope.newUser, function() {
+                $scope.$apply(function() {
+                    NavigationService.slidePage('/','slide');
+                })
+            });
+        }
+	};
+	
+	$scope.login = function() {
+        if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
+            navigator.notification.alert("Please check your email address.", function() {}, "Invalid Email Address", "OK");
+        } else {
+            ParseService.login($scope.credentials, function() {
+                $scope.$apply(function() {
+                    NavigationService.slidePage('/','slide');
+                })
+            });
+        }
+	};
+                       
+    $scope.resetPassword = function() {
+        if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
+            navigator.notification.alert("Please check your email address.", function() {}, "Invalid Email Address", "OK");
+        } else {
+            ParseService.resetPassword($scope.userEmail, function() {
+                $scope.$apply(function() {
+                    NavigationService.back();
+                })
+            });
+        }
+    };
+});
+
+automizeApp.controller('ListingsController', function($scope, $routeParams, $location, ParseService, WidgetService, NavigationService) {
 	$scope.addListing = function() {
 		ParseService.addListing($scope.listing, newListingImageData, function() {
             $scope.$apply(function() {
-                $location.path('/listings');
+                NavigationService.slidePage('/listings','slide');
             });
 		});
 	};
                        
     $scope.cancelNewListing = function() {
         $scope.$apply(function() {
-           $location.path('/');
+            NavigationService.back();
         })
     };
 
@@ -66,12 +88,9 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
 	};
 
 	$scope.getListing = function() {
-		WidgetService.setLoadingWidgetState(true);
-
 		ParseService.getListing($routeParams.pOjId, function(result) {
 			$scope.$apply(function() {
 				$scope.listing = result;
-				WidgetService.setLoadingWidgetState(false);
 			})
 		});
 	};
@@ -93,10 +112,10 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
     	}
     	// Take picture using device camera and retrieve image as base64-encoded string
     	
-		if ($scope.newListingPhotos.length < 6) {
+		if ($scope.newListingPhotos.length < 8) {
 			navigator.camera.getPicture(onSuccess,onFail,options);
 		} else {
-			navigator.notification.alert("Please delete one first.",function() {},"Too many photos!","Close");
+			navigator.notification.alert("Number of photos allowed is 8.",function() {},"Too Many Photos","Close");
 		};
 	};
 
