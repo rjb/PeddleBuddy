@@ -8,10 +8,7 @@ automizeApp.controller('NavigationController', function($scope, NavigationServic
     };
 });
 
-automizeApp.controller('WelcomeController', function($scope, $location, NavigationService) {
-    $scope.shouldHide = function() {
-        $scope.hidden = false;
-    };
+automizeApp.controller('WelcomeController', function() {
 });
 
 automizeApp.controller('HomeController', function($scope, $location, ParseService, NavigationService) {
