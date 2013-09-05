@@ -35,11 +35,8 @@ automizeApp.factory('Widget', function() {
 
 automizeApp.factory('Notification', function() {
     return {
-        emailErrorTitle: "Invalid Email Address",
-        emailErrorMessage: "Please check your email address.",
-        
-        passwordErrorTitle: "Password Is Too Short",
-        passwordErrorMessage: "It must be at least 6 characters."
+        emailInvalid: {title: "Invalid Email Address", message: "Please check your email address."},
+        passwordInvalid: {title: "Password Is Too Short", message: "It must be at least 6 characters."}
     };
 });
 

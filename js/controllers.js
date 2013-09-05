@@ -19,9 +19,9 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
 	             
 	$scope.signUp = function() {
         if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
-            navigator.notification.alert(Notification.emailErrorMessage, function() {}, Notification.emailErrorTitle, "OK");
+            navigator.notification.alert(Notification.emailInvalid.message, function() {}, Notification.emailInvalid.title, "OK");
         } else if($scope.signupForm.password.$error.required || $scope.signupForm.password.$error.minlength) {
-            navigator.notification.alert(Notification.passwordErrorMessage, function() {}, Notification.passwordErrorTitle, "OK");
+            navigator.notification.alert(Notification.passwordInvalid.message, function() {}, Notification.passwordInvalid.message, "OK");
         } else {
             Parse.signUp($scope.newUser, function() {
                 $scope.$apply(function() {
@@ -33,7 +33,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
 	
 	$scope.login = function() {
         if($scope.loginForm.email.$error.required || $scope.loginForm.email.$error.email) {
-            navigator.notification.alert(Notification.emailErrorMessage, function() {}, Notification.emailErrorTitle, "OK");
+            navigator.notification.alert(Notification.emailInvalid.message, function() {}, Notification.emailInvalid.title, "OK");
         } else {
             Parse.login($scope.credentials, function() {
                 $scope.$apply(function() {
@@ -49,8 +49,8 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
     };
                        
     $scope.resetPassword = function() {
-        if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
-            navigator.notification.alert(Notification.emailErrorMessage, function() {}, Notification.emailErrorTitle, "OK");
+        if($scope.passwordResetForm.email.$error.required || $scope.passwordResetForm.email.$error.email) {
+            navigator.notification.alert(Notification.emailInvalid.message, function() {}, Notification.emailInvalid.title, "OK");
         } else {
             Parse.resetPassword($scope.userEmail, function() {
                 $scope.$apply(function() {
