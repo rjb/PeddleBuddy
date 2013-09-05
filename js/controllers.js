@@ -12,10 +12,6 @@ automizeApp.controller('WelcomeController', function() {
 });
 
 automizeApp.controller('HomeController', function($scope, $location, Parse, Navigation) {
-	$scope.logout = function() {
-		Parse.logout();
-		Navigation.slidePage('/welcome','slide');
-	};
 });
 
 automizeApp.controller('LoginController', function($scope, $location, Parse, Navigation, Notification) {
@@ -46,6 +42,11 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
             });
         }
 	};
+                       
+    $scope.logout = function() {
+        Parse.logout();
+        Navigation.slidePage('/welcome','slide');
+    };
                        
     $scope.resetPassword = function() {
         if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
