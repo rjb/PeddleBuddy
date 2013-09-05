@@ -12,7 +12,7 @@ automizeApp.factory('Navigation', function($navigate) {
 });
 
 // Loading Spindle Widget
-automizeApp.factory('Widget', function() {
+automizeApp.factory('LoadingWidget', function() {
 	// Simple loading widget service. Shows a spining wheel for loading list views.
 
 	// Set inital state

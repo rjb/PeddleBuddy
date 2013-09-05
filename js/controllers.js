@@ -61,7 +61,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
     };
 });
 
-automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, Widget, Navigation) {
+automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, LoadingWidget, Navigation) {
 	$scope.addListing = function() {
 		Parse.addListing($scope.listing, newListingImageData, function() {
             $scope.$apply(function() {
@@ -77,12 +77,12 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
     };
 
 	$scope.getListings = function() {
-		Widget.setLoadingWidgetState(true);
+		LoadingWidget.setLoadingWidgetState(true);
 		
 		Parse.getListings(function(results) {
 			$scope.$apply(function() {
 				$scope.listings = results;
-				Widget.setLoadingWidgetState(false);
+				LoadingWidget.setLoadingWidgetState(false);
 			})
 		});
 	};
@@ -96,11 +96,11 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
 	};
 
 	$scope.spinningWheelPath = function() {
-		$scope.spinningWheelPath = Widget.spinningWheelPath();
+		$scope.spinningWheelPath = LoadingWidget.spinningWheelPath();
 	}
 
 	$scope.showLoadingWidget = function() {
-		return Widget.showLoadingWidget();
+		return LoadingWidget.showLoadingWidget();
 	};
 
 	$scope.takePhoto = function() {
