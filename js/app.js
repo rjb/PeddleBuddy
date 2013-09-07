@@ -1,6 +1,6 @@
 'use strict';
 
-var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-navigate'])
+var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-navigate', 'angularSpinner'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 			when('/', 			  	 { controller:'HomeController', 	templateUrl:'partials/home.html' }).

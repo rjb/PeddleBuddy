@@ -1,3 +1,10 @@
+automizeApp.controller('SpinnerController', function($scope, Spinner) {
+    $scope.opts = {radius:10, width:2, length:7, lines:15, corners:1, speed:1.5, trail:75, rotate:0, top:25, left:35, color:"#ffffff"};
+    $scope.$on('broadcastSpinning', function() {
+        $scope.spinning = Spinner.spinning;
+    });
+});
+
 automizeApp.controller('NavigationController', function($scope, Navigation) {
     $scope.slidePage = function (path,type) {
         Navigation.slidePage(path,type);
@@ -14,31 +21,40 @@ automizeApp.controller('WelcomeController', function() {
 automizeApp.controller('HomeController', function($scope, $location, Parse, Navigation) {
 });
 
-automizeApp.controller('LoginController', function($scope, $location, Parse, Navigation, Notification) {
+automizeApp.controller('LoginController', function($scope, $location, Parse, Navigation, Spinner) {
 	$scope.credentials = { username: "", password: "" };
 	             
 	$scope.signUp = function() {
+        Spinner.start();
         if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
-            navigator.notification.alert(Notification.emailInvalid.message, function() {}, Notification.emailInvalid.title, "OK");
+            navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
+            Spinner.stop();
         } else if($scope.signupForm.password.$error.required || $scope.signupForm.password.$error.minlength) {
-            navigator.notification.alert(Notification.passwordInvalid.message, function() {}, Notification.passwordInvalid.message, "OK");
+            navigator.notification.alert(Parse.passwordInvalid.message, function() {}, Parse.passwordInvalid.message, "OK");
+            Spinner.stop();
         } else {
             Parse.signUp($scope.newUser, function() {
                 $scope.$apply(function() {
+                    Spinner.stop();
                     Navigation.slidePage('/','slide');
                 })
             });
         }
 	};
-	
+    
 	$scope.login = function() {
+        Spinner.start();
         if($scope.loginForm.email.$error.required || $scope.loginForm.email.$error.email) {
-            navigator.notification.alert(Notification.emailInvalid.message, function() {}, Notification.emailInvalid.title, "OK");
+            navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
+            Spinner.stop();
         } else {
             Parse.login($scope.credentials, function() {
                 $scope.$apply(function() {
+                    Spinner.stop();
                     Navigation.slidePage('/','slide');
                 })
+            }, function(error) {
+                $scope.$apply(function() { Spinner.stop() })
             });
         }
 	};
@@ -49,16 +65,25 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
     };
                        
     $scope.resetPassword = function() {
+        Spinner.start();
         if($scope.passwordResetForm.email.$error.required || $scope.passwordResetForm.email.$error.email) {
-            navigator.notification.alert(Notification.emailInvalid.message, function() {}, Notification.emailInvalid.title, "OK");
+            navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
+            Spinner.stop();
         } else {
             Parse.resetPassword($scope.userEmail, function() {
                 $scope.$apply(function() {
+                    Spinner.stop();
                     Navigation.back();
                 })
+            }, function(error) {
+                $scope.$apply(function() { Spinner.stop() })
             });
         }
     };
+                       
+    $scope.$on('broadcastSpinning', function() {
+        $scope.spinning = Spinner.spinning;
+    });
 });
 
 automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, LoadingWidget, Navigation) {
@@ -115,7 +140,7 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
 		if ($scope.newListingPhotos.length < 8) {
 			navigator.camera.getPicture(onSuccess,onFail,options);
 		} else {
-			navigator.notification.alert("Number of photos allowed is 8.",function() {},"Too Many Photos","Close");
+			navigator.notification.alert(Parse.photoInvalid.message,function() {},Parse.photoInvalid.title,"Close");
 		};
 	};
 

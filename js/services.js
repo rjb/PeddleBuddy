@@ -33,11 +33,23 @@ automizeApp.factory('LoadingWidget', function() {
 	};
 });
 
-automizeApp.factory('Notification', function() {
+automizeApp.factory('Spinner', function($rootScope) {
+    var spinning = false;
+    
     return {
-        emailInvalid: {title: "Invalid Email Address", message: "Please check your email address."},
-        passwordInvalid: {title: "Password Is Too Short", message: "It must be at least 6 characters."}
-    };
+        start: function() {
+            this.spinning = true;
+            this.broadcast();
+        },
+        stop: function() {
+            this.spinning = false;
+            this.broadcast();
+        },
+        broadcast: function() {
+            $rootScope.$broadcast('broadcastSpinning');
+        },
+        spinning: this.spinning
+    }
 });
 
 // Parse Service
@@ -45,6 +57,30 @@ automizeApp.factory('Parse', function() {
 	Parse.initialize("HtjnRGYhpDYLR0nr9RpzHaVoeTFPYzipwGUaqcnr", "udOXbcxu1ewji0D2BziyRFd7EnrNyLkrWcMd4vEo");
 						
 	return {
+        emailInvalid: {
+            title: "Invalid Email Address",
+            message: "Please check your email address."
+        },
+        passwordInvalid: {
+            title: "Password Is Too Short",
+            message: "It must be at least 6 characters."
+        },
+        loginInvalid: {
+            title: "Login Error",
+            message: "Please check your email address and password."
+        },
+        passwordResetSuccess: {
+            title: "Password Reset",
+            message: "Check your inbox for instructions to reset your password."
+        },
+        passwordResetInvalid: {
+            title: "Reset Error",
+            message: "Please make sure your email address is correct."
+        },
+        photoInvalid: {
+            title: "Too Many Photos",
+            message: "Number of photos allowed is 8."
+        },
 		addListing: function(_listing, _photos, callback) {
 			var Listing = Parse.Object.extend("Listing");
 			var ListingPhoto = Parse.Object.extend("ListingPhoto");
@@ -118,24 +154,30 @@ automizeApp.factory('Parse', function() {
 				}
 			})
 		},
-		login: function(_credentials, callback) {
+		login: function(_credentials, successCallback, errorCallback) {
+            var invalidMsg = this.loginInvalid;
 			Parse.User.logIn(_credentials.username.toLowerCase(), _credentials.password).then(function(user) {
-  				callback(user);
+  				successCallback();
 			}, function(error) {
-  				navigator.notification.alert("Please check your email address and password.",function() {},"Login Error","OK");
+                navigator.notification.alert(invalidMsg.message,function() {},invalidMsg.title,"OK");
+                errorCallback(error);
 			});
 		},
 		logout: function(callback) {
 			Parse.User.logOut();
 		},
-        resetPassword: function(userEmail, callback) {
+        resetPassword: function(userEmail, successCallback, errorCallback) {
+            var successMsg = this.passwordResetSuccess;
+            var invalidMsg = this.passwordResetInvalid;
             Parse.User.requestPasswordReset(userEmail.toLowerCase()).then(function() {
-                navigator.notification.alert("Please check your inbox.",function() {},"Reset instructions sent","OK");
-                callback()
+                navigator.notification.alert(successMsg.message,function() {},successMsg.title,"OK");
+                successCallback();
             }, function(error) {
-                navigator.notification.alert("Please check your email address.",function() {},"Reset Error","Close");
+                navigator.notification.alert(invalidMsg.message,function() {},invalidMsg.title,"Close");
+                errorCallback();
             });
         },
+        // signupStepOne, signupSetpTwo, etc.
 		signUp: function(_newUser, callback) {
 			var user = new Parse.User();
 			user.signUp({username: _newUser.email.toLowerCase(), password: _newUser.password, telephone: _newUser.telephone}, {
