@@ -100,6 +100,15 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
             Navigation.back();
         })
     };
+                       
+    $scope.togglePriceOptional = function() {
+        $scope.listing.sellerPrice = '';
+        $scope.priceOptional = !$scope.priceOptional;
+    };
+                       
+    $scope.toggleFlawOptional = function() {
+        $scope.flawOptional = !$scope.flawOptional;
+    };
 
 	$scope.getListings = function() {
 		LoadingWidget.setLoadingWidgetState(true);

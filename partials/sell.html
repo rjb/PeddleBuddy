@@ -49,12 +49,12 @@
                     <li>
                         <span ng-show="newListingPhotos == 0" style="color:#999999;">Any flaws?</span>
                         <span ng-show="newListingPhotos.length > 0">Any flaws?</span>
-                        <div class="toggle" ng-click="flawOptionals = !flawOptionals">
+                        <div class="toggle" ng-click="toggleFlawOptional()">
                             <div class="toggle-handle"></div>
                         </div>
                     </li>
                     <li style="padding:0;margin:0;">
-                        <div ng-show="flawOptionals" class="optional">
+                        <div ng-show="flawOptional" class="optional">
                             <input type="text" name="sellerCondition" ng-model="listing.condition" placeholder="List any flaws, big or small." ng-disabled="newListingPhotos == 0">
                         </div>
                     </li>
@@ -63,13 +63,13 @@
                         <!-- Let us price it for you? -->
                         <span ng-show="newListingPhotos == 0" style="color:#999999;">Set your own price?</span>
                         <span ng-show="newListingPhotos.length > 0">Set your own price?</span>
-                        <div class="toggle" ng-click="optionals = !optionals">
+                        <div class="toggle" ng-click="togglePriceOptional()">
                             <div class="toggle-handle"></div>
                         </div>
                     </li>
                     <li style="padding:0;margin:0;">
-                        <div ng-show="optionals" class="optional">
-                            <input type="text" name="sellerPrice" ng-model="listing.sellerPrice" placeholder="$" ng-disabled="newListingPhotos == 0">
+                        <div ng-show="priceOptional" class="optional">
+                            <input type="tel" name="sellerPrice" ng-model="listing.sellerPrice" placeholder="$" ng-disabled="newListingPhotos == 0">
                         </div>
                     </li>
                 </ul>
