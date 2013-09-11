@@ -142,10 +142,11 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
         	quality: 50,
         	destinationType: navigator.camera.DestinationType.DATA_URL,
         	sourceType: 0, // 0:Photo Library, 1=Camera, 2=Saved Photo Album
-        	encodingType: 0 // 0=JPG 1=PNG
+        	encodingType: 0, // 0=JPG 1=PNG
+            allowEdit: false
     	}
-    	// Take picture using device camera and retrieve image as base64-encoded string
-    	
+
+        // Take picture using device camera and retrieve image as base64-encoded string
 		if ($scope.newListingPhotos.length < 8) {
 			navigator.camera.getPicture(onSuccess,onFail,options);
 		} else {
@@ -165,8 +166,9 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
         $scope.$apply();
 	};
 
-	var onFail = function(e) {
-    	console.log("On fail " + e);
+	var onFail = function(message) {
+    	console.log("On fail " + message);
+        navigator.notification.alert(message,function() {},"Oops!","Close");
 	};
 
 
