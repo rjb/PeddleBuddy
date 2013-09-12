@@ -47,6 +47,10 @@ select {
 	text-align: center;
 }
 
+.navi a {
+    color: #929292;
+}
+
 .listing-badge {
     position: absolute;
 	color: #fff;

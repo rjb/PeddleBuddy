@@ -2,41 +2,41 @@
   <h1 class="title" id="home-logo"></h1>
 </header>
 
-<div class="content">
+<div class="content" style="background:#F5F5F5;">
+    <ul class="list center selling-form" style="font-weight:bold;font-size:18px;color:#444444;">
+        <li class="center" style="border-bottom: solid 1px #E6E6E6;">
+            $300 | 30 listings | 5 sales
+        </li>
+    </ul>
+    
     <div class="content-padded" ng-controller="NavigationController">
-        <br />
-        <a ng-click="slidePage('/sell', 'modal')" class="button-block" style="padding:35px 0;">
-            Sell an item
-        </a>
+        <br/>
+        <div class="row-fluid">
+            <div class="span6 center navi">
+                <a ng-click="slidePage('/sell', 'modal')" style="padding:35px 0;">
+                    <img ng-src="assets/images/sell.png" /><br/>Sell
+                </a>
+            </div>
+            <div class="span6 center navi">
+                <a ng-click="slidePage('/listings', 'slide')" style="padding:35px 0;">
+                    <img ng-src="assets/images/selling.png" /><br/>Listings
+                </a>
+            </div>
+        </div>
+        <br/><br/>
+        <div class="row-fluid">
+            <div class="span6 center navi">
+                <a ng-click="slidePage('/account', 'slide')" style="padding:35px 0;">
+                    <img ng-src="assets/images/account.png" /><br/>Account
+                </a>
+            </div>
+            <div class="span6 center navi" ng-controller="LoginController">
+                <a href="" ng-click="logout()" style="padding:35px 0;">
+                    <img ng-src="assets/images/more.png" /><br/>More
+                </a>
+            </div>
+        </div>
     </div>
-  
-    <br/><br/>
-  
-  <ul class="list inset home-list" style="font-weight:bold;" ng-controller="NavigationController">
-    <li>
-      <a ng-click="slidePage('/listings', 'slide')">
-        Selling
-        <span class="chevron"></span>
-      </a>
-    </li>
-    <li>
-      <a ng-click="slidePage('account', 'slide')">
-        Account
-        <span class="chevron"></span>
-      </a>
-    </li>
-  </ul>
-
-  <br/><br/>
-
-  <ul class="list inset home-list" style="font-weight:bold;" ng-controller="LoginController">
-    <li>
-      Logout:
-      <a class="button" ng-click="logout()">
-        Logout
-      </a>
-    </li>
-  </ul>
 </div>
 <!--
 <nav class="bar-tab">

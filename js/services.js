@@ -33,6 +33,17 @@ automizeApp.factory('LoadingWidget', function() {
 	};
 });
 
+var login = angular.module('ParseUser',[]);
+automizeApp.factory('$userLoggedIn', function(){
+    Parse.initialize("HtjnRGYhpDYLR0nr9RpzHaVoeTFPYzipwGUaqcnr", "udOXbcxu1ewji0D2BziyRFd7EnrNyLkrWcMd4vEo");
+    
+    return function(){
+        var currentUser = Parse.User.current();
+        if (currentUser) return true;
+        return false;
+    };
+});
+
 automizeApp.factory('Spinner', function($rootScope) {
     var spinning = false;
     

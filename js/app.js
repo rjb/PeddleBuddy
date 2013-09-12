@@ -1,6 +1,6 @@
 'use strict';
 
-var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-navigate', 'angularSpinner'])
+var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-navigate', 'angularSpinner', 'ParseUser'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.
 			when('/', 			  	 { controller:'HomeController', 	templateUrl:'partials/home.html' }).
@@ -14,4 +14,11 @@ var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-nav
 			when('/account', 	  	 { controller:'AccountController',  templateUrl:'partials/account_settings.html' }).
 			when('/account/payment', { controller:'AccountController',  templateUrl:'partials/payment_settings.html' }).
 			otherwise({ redirectTo: '/welcome' });
-	}]);
+	}])
+    .run(function($userLoggedIn, $location){
+         if ($userLoggedIn()) {
+            $location.path('/');
+         } else {
+            $location.path('/welcome');
+         }
+     });
