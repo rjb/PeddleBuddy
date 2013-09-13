@@ -132,38 +132,34 @@ automizeApp.factory('Parse', function() {
                 navigator.notification.alert(error.message,function() {},"Oops!","Close");
             });
 		},
-		getListings: function(callback) {
+		getListings: function(successCallback, errorCallback) {
 			var Listing = Parse.Object.extend("Listing");
 			var query = new Parse.Query(Listing);
             
             query.include("photos");
 			query.descending("updatedAt");
             query.limit(10);
-
-			query.find({
-				success: function(results) {
-        			callback(results);
-				},
-				error: function(error) {
-					navigator.notification.alert(error.message,function() {},"Oops!","Close");
-				}
-			})
+                    
+            query.find().then(function(results) {
+                successCallback(results);
+            }, function(error) {
+                navigator.notification.alert("Please go back and try again.",function() {},"Unknown Error","Close");
+                errorCallback(error);
+            });
 		},
-		getListing: function(listingId, callback) {
+		getListing: function(listingId, successCallback, errorCallback) {
 			var Listing = Parse.Object.extend("Listing");
 			var query = new Parse.Query(Listing);
 			var lId = listingId;
 			query.equalTo("objectId", lId);
             query.include("photos");
 
-			query.find({
-				success: function(results) {
-        			callback(results[0]);
-				},
-				error: function(error) {
-					navigator.notification.alert(error.message,function() {},"Oops!","Close");
-				}
-			})
+            query.find().then(function(results) {
+                successCallback(results[0]);
+            }, function(error) {
+                navigator.notification.alert("Please go back and try again.",function() {},"Unknown Error","Close");
+                errorCallback(error);
+            });
 		},
 		login: function(_credentials, successCallback, errorCallback) {
             var invalidMsg = this.loginInvalid;
@@ -205,6 +201,20 @@ automizeApp.factory('Parse', function() {
 			if (currentUser) {
 				return currentUser;
 			}
-		}
+		},
+        getPage: function(title, successCallback, errorCallback) {
+            var Page = Parse.Object.extend("Page");
+            var query = new Parse.Query(Page);
+            var pageTitle = title;
+            
+            query.equalTo("name", pageTitle);
+            
+            query.find().then(function(results) {
+                successCallback(results[0]);
+            }, function(error) {
+                navigator.notification.alert("Please go back a try again.",function() {},"Unknown Error","Close");
+                errorCallback(error);
+            });
+        }
 	};
 });

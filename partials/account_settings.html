@@ -5,7 +5,8 @@
   	<h1 class="title">Account</h1>
 </header>
 
-<div class="content content-padded">
+<div class="content">
+    <div class="content-padded">
 	<ul class="segmented-controller">
 	  <li class="active">
 	    <a ng-href="#/account">Account</a>
@@ -29,4 +30,13 @@
 	  	</div>
 		<a class="button button-block">Save Changes</a>
 	</form>
+    </div>
+    
+    <ul class="list inset" style="font-weight:bold;" ng-controller="LoginController">
+        <li>
+            <a ng-click="logout()">
+                Sign Out
+            </a>
+        </li>
+    </ul>
 </div>

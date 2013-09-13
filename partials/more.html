@@ -1,0 +1,45 @@
+<header class="bar-title" ng-controller="NavigationController">
+    <a class="button" ng-click="back()">
+    	Back
+  	</a>
+  	<h1 class="title">More</h1>
+</header>
+
+<div class="content">
+    <br/>
+    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
+        <li>
+            <a ng-click="slidePage('/faq', 'slide')">
+                FAQ
+            </a>
+            <span class="chevron"></span>
+        </li>
+        <li>
+            <a ng-click="slidePage('/contact', 'slide')">
+                Contact Us
+            </a>
+            <span class="chevron"></span>
+        </li>
+        <li>
+            <a ng-click="slidePage('/about', 'slide')">
+                About PeddleBuddy
+            </a>
+            <span class="chevron"></span>
+        </li>
+    </ul>
+    <br/>
+    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
+        <li>
+            <a ng-click="slidePage('/privacy', 'slide')">
+                Privacy Statement
+            </a>
+            <span class="chevron"></span>
+        </li>
+        <li>
+            <a ng-click="slidePage('/tos', 'slide')">
+                Terms of Service
+            </a>
+            <span class="chevron"></span>
+        </li>
+    </ul>
+</div>

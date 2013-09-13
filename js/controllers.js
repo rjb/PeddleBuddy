@@ -21,6 +21,29 @@ automizeApp.controller('WelcomeController', function() {
 automizeApp.controller('HomeController', function($scope, $location, Parse, Navigation) {
 });
 
+automizeApp.controller('PageController', function($scope, Parse, Spinner) {
+    $scope.pageContent = {};
+
+    $scope.getPage = function(title) {
+        Spinner.start();
+        var pageTitle = title;
+        Parse.getPage(pageTitle, function(result) {
+            $scope.$apply(function() {
+                var page = result;
+                $scope.title = page.get('title');
+                $scope.content = page.get('content');
+                Spinner.stop();
+            })
+        }, function(error) {
+            $scope.$apply(function() { Spinner.stop() })
+        });
+    };
+                       
+    $scope.$on('broadcastSpinning', function() {
+        $scope.spinning = Spinner.spinning;
+    });
+});
+
 automizeApp.controller('LoginController', function($scope, $location, Parse, Navigation, Spinner) {
 	$scope.credentials = { username: "", password: "" };
 	             
@@ -86,7 +109,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
     });
 });
 
-automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, LoadingWidget, Navigation) {
+automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, Navigation, Spinner) {
 	$scope.addListing = function() {
 		Parse.addListing($scope.listing, newListingImageData, function() {
             $scope.$apply(function() {
@@ -111,30 +134,27 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
     };
 
 	$scope.getListings = function() {
-		LoadingWidget.setLoadingWidgetState(true);
-		
+		Spinner.start();
 		Parse.getListings(function(results) {
 			$scope.$apply(function() {
 				$scope.listings = results;
-				LoadingWidget.setLoadingWidgetState(false);
+                Spinner.stop();
 			})
-		});
+        }, function(error) {
+            $scope.$apply(function() { Spinner.stop() })
+        });
 	};
 
 	$scope.getListing = function() {
+        Spinner.start();
 		Parse.getListing($routeParams.pOjId, function(result) {
 			$scope.$apply(function() {
 				$scope.listing = result;
+                Spinner.stop();
 			})
-		});
-	};
-
-	$scope.spinningWheelPath = function() {
-		$scope.spinningWheelPath = LoadingWidget.spinningWheelPath();
-	}
-
-	$scope.showLoadingWidget = function() {
-		return LoadingWidget.showLoadingWidget();
+        }, function(error) {
+            $scope.$apply(function() { Spinner.stop() })
+        });
 	};
 
 	$scope.takePhoto = function() {
@@ -185,20 +205,13 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
                        
     var newListingImageData = [];
     $scope.newListingPhotos = [];
-                       
-    $scope.conditionOptions = [
-        { name: 'Condtion?', value: '' },
-        { name: 'New', value: 'new' },
-        { name: 'Excellent', value: 'excellent' },
-        { name: 'Very Good', value: 'very good' },
-        { name: 'Good', value: 'good' },
-        { name: 'Ok', value: 'ok' }
-    ];
     
-    $scope.listing = {condition : $scope.conditionOptions[0].value};
+    $scope.listing = {};
 	$scope.listings = [];
-	$scope.getListings();
-	$scope.spinningWheelPath();
+                       
+    $scope.$on('broadcastSpinning', function() {
+        $scope.spinning = Spinner.spinning;
+    });
 });
 
 automizeApp.controller('AccountController', function($scope, $location, $anchorScroll, Parse) {

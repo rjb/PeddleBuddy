@@ -5,11 +5,11 @@
   	<h1 class="title">Your Listings</h1>
 </header>
 
-<div class="content">
-    <div ng-if="showLoadingWidget()" class="center"><br/><br/><img ng-src="{{ spinningWheelPath }}" />
-        <br/>Loading...
-    </div>
-    <div ng-show="listings == 0 && !showLoadingWidget()" class="center"><br/><br/><h3>No listings yet</h3></div>
+<div id="overlay" ng-show="spinning"></div>
+<div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
+
+<div class="content" ng-init="getListings()">
+    <div ng-show="listings == 0 && !spinning" class="center"><br/><br/><h3>No listings yet</h3></div>
 	<ul class="list">
 		<li ng-repeat="listing in listings">
 			<a ng-click="slidePage('/listings/{{ listing.id }}', 'slide')" ng-controller="NavigationController">
