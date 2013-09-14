@@ -186,15 +186,28 @@ automizeApp.factory('Parse', function() {
         },
         // signupStepOne, signupSetpTwo, etc.
 		signUp: function(_newUser, callback) {
-			var user = new Parse.User();
-			user.signUp({username: _newUser.email.toLowerCase(), password: _newUser.password, telephone: _newUser.telephone}, {
-				success: function(user) {
-					callback(user);
-			  	},
-			  	error: function(user, error) {
-			    	navigator.notification.alert(error.message,function() {},"Oops!","Close");
-			  	}
-			});
+            var user = new Parse.User();
+            var userDetails = Parse.Object.extend("UserDetails");
+
+            user.set("username", _newUser.email.toLowerCase());
+            user.set("firstName", _newUser.firstName);
+            user.set("lastName", _newUser.lastName);
+            user.set("password", _newUser.password);
+            
+            var promiseOne = [];
+            promiseOne.push(user.signUp(null));
+            
+            Parse.Promise.when(promiseOne).then(function() {
+                var newUserDetails = new userDetails();
+                                                
+                newUserDetails.setACL(new Parse.ACL(Parse.User.current()));
+                
+                newUserDetails.save();
+            }).then(function() {
+                callback();
+            }, function(error) {
+                navigator.notification.alert("Please try again.",function() {},"Sign Up Error","Close");
+            });
 		},
 		getUser: function() {
 			var currentUser = Parse.User.current();
@@ -202,6 +215,41 @@ automizeApp.factory('Parse', function() {
 				return currentUser;
 			}
 		},
+        getUserDetails: function(successCallback, errorCallback) {
+            var userDetails = Parse.Object.extend("UserDetails");
+            var query = new Parse.Query(userDetails);
+            
+            query.first().then(function(result){
+                successCallback(result);
+            }, function(error){
+                navigator.notification.alert("Please go back and try again.",function() {},"Error","Close");
+                errorCallback(error);
+            });
+        },
+        updateAccount: function(user, successCallback, errorCallback) {
+            var currentUser = Parse.User.current();
+            var UserDetails = Parse.Object.extend("UserDetails");
+            var query = new Parse.Query(UserDetails);
+            
+            query.first().then(function(result) {
+                result.set("address", user.address);
+                result.set("address2", user.address2);
+                result.set("city", user.city);
+                result.set("state", user.state);
+                result.set("zipcode", user.zipcode);
+                result.save();
+                
+                currentUser.set("username", user.username);
+                currentUser.set("firstName", user.firstName);
+                currentUser.set("lastName", user.lastName);
+                currentUser.save();
+                               
+                successCallback(result);
+            }, function(error){
+                navigator.notification.alert("Please try again.",function() {},"Error","Close");
+                errorCallback(error);
+            });
+        },
         getPage: function(title, successCallback, errorCallback) {
             var Page = Parse.Object.extend("Page");
             var query = new Parse.Query(Page);

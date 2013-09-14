@@ -3,6 +3,9 @@
     	Back
   	</a>
   	<h1 class="title">Sign In</h1>
+    <a class="button" ng-click="login()">
+    	Sign In
+  	</a>
 </header>
 
 <div id="overlay" ng-show="spinning"></div>
@@ -11,11 +14,10 @@
 <div class="content content-padded">
     <br/>
 	<form name="loginForm">
-		<input type="email" name="email" ng-model="credentials.username" placeholder="Email" required/>
-		<input type="password" name="password" ng-model="credentials.password" placeholder="Password" />
-		
-		<br /><br />		
-		<button type="submit" ng-click="login()" class="btn button button-block">Sign In</button>
+        <div class="input-group">
+            <input type="email" name="email" ng-model="credentials.username" placeholder="Email" required/>
+            <input type="password" name="password" ng-model="credentials.password" placeholder="Password" />
+        </div>
 	</form>
 	<br />
     <p class="center" ng-controller="NavigationController"><a ng-click="slidePage('reset_password', 'slide')">Forgot your password?</a></p>

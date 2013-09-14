@@ -3,6 +3,9 @@
     	Back
   	</a>
   	<h1 class="title">Get Started</h1>
+	<a class="button" ng-click="signUp()">
+    	Sign Up
+  	</a>
 </header>
 
 <div id="overlay" ng-show="spinning"></div>
@@ -11,10 +14,11 @@
 <div class="content content-padded">
 	<br/>
 	<form name="signupForm">
-		<input type="email" name="email" ng-model="newUser.email" placeholder="Email" required/>
-		<input type="password" name="password" ng-model="newUser.password" placeholder="Password (at least 6 characters)" ng-minlength="6" required/>
-		<input type="text" name="telephone" ng-model="newUser.telephone" placeholder="555-555-5555" required/>
-		<br /><br />		
-		<button type="submit" ng-click="signUp()" class="btn button button-block">Get Started</button>
+        <div class="input-group">
+            <input type="text" name="firstName" ng-model="newUser.firstName" placeholder="First Name" required/>
+            <input type="text" name="lastName" ng-model="newUser.lastName" placeholder="Last Name" required/>
+            <input type="email" name="email" ng-model="newUser.email" placeholder="Email Address" required/>
+            <input type="password" name="password" ng-model="newUser.password" placeholder="Password (at least 6 characters)" ng-minlength="6" required/>
+        </div>
 	</form>
 </div>

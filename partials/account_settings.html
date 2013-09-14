@@ -5,36 +5,47 @@
   	<h1 class="title">Account</h1>
 </header>
 
-<div class="content">
+<div class="content" style="background:#F5F5F5;">
     <div class="content-padded">
-	<ul class="segmented-controller">
-	  <li class="active">
-	    <a ng-href="#/account">Account</a>
-	  </li>
-	  <li>
-	    <a ng-href="#/account/payment">Payment Settings</a>
-	  </li>
-	</ul>
-	<form>
-	  	<div class="input-group">
-	  	  	<input type="text" placeholder="Full name" value="{{ user.get('fullName') }}" required>
-	  	  	<input type="email" placeholder="Email" value="{{ user.get('username') }}" required>
-	  	  	<input type="tel" placeholder="555-555-5555" value="{{ user.get('telephone') }}" required>
-	  	</div>
-	  	<div class="input-group">
-	  	  	<input type="text" placeholder="Address">
-			<input type="text" placeholder="Unit/Apt./Suite">
-			<input type="text" placeholder="City">
-			<input type="text" placeholder="State">
-	  	  	<input type="text" placeholder="Zipcode">
-	  	</div>
-		<a class="button button-block">Save Changes</a>
-	</form>
+        <h3>{{ user.get('firstName') }} {{ user.get('lastName') }}</h3>
     </div>
+
+    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
+        <li>
+            <a ng-click="">
+                Sales ($30)
+                <span class="chevron"></span>
+            </a>
+        </li>
+        <li>
+            <a ng-click="">
+                Payment Settings
+                <span class="chevron"></span>
+            </a>
+        </li>
+    </ul>
+    
+    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
+        <li>
+            <a ng-click="">
+                Tell a Friend
+                <span class="chevron"></span>
+            </a>
+        </li>
+    </ul>
+    
+    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
+        <li>
+            <a ng-click="slidePage('/edit_account', 'slide')">
+                Edit Account
+                <span class="chevron"></span>
+            </a>
+        </li>
+    </ul>
     
     <ul class="list inset" style="font-weight:bold;" ng-controller="LoginController">
         <li>
-            <a ng-click="logout()">
+            <a ng-click="logout()" confirm-action confirm-action-title="Are you sure you would like to sign out?">
                 Sign Out
             </a>
         </li>

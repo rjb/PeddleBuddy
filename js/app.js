@@ -18,6 +18,7 @@ var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-nav
 			when('/listings', 		 { controller:'ListingsController', templateUrl:'partials/listings.html' }).
 			when('/listings/:pOjId', { controller:'ListingsController', templateUrl:'partials/listing.html' }).
 			when('/account', 	  	 { controller:'AccountController',  templateUrl:'partials/account_settings.html' }).
+			when('/edit_account', 	 { controller:'AccountController',  templateUrl:'partials/edit_account.html' }).
 			when('/account/payment', { controller:'AccountController',  templateUrl:'partials/payment_settings.html' }).
 			otherwise({ redirectTo: '/welcome' });
 	}])

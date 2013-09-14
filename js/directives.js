@@ -6,7 +6,8 @@ automizeApp.directive('confirmAction', function () {
     priority: 1,
     terminal: true,
     link: function (scope, element, attr) {
-      var msg = attr.confirmAction || "Are you sure?";
+      var msg = attr.confirmAction || "";
+      var title = attr.confirmActionTitle || "Are you sure?";
       var clickAction = attr.ngClick;
       element.bind('click',function () {
             navigator.notification.confirm( msg,
@@ -15,7 +16,7 @@ automizeApp.directive('confirmAction', function () {
                                                     scope.$eval(clickAction)
                                                 }
                                             },
-                                            'Are you sure?',
+                                            title,
                                             ["No","Yes"]
             )
       });

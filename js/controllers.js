@@ -84,7 +84,9 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
                        
     $scope.logout = function() {
         Parse.logout();
-        Navigation.slidePage('/welcome','slide');
+        $scope.$apply(function() {
+            Navigation.slidePage('/welcome','slide');
+        })
     };
                        
     $scope.resetPassword = function() {
@@ -214,15 +216,60 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
     });
 });
 
-automizeApp.controller('AccountController', function($scope, $location, $anchorScroll, Parse) {
+automizeApp.controller('AccountController', function($scope, $location, $anchorScroll, Parse, Navigation, Spinner) {
 	$scope.activate = function(id) {
 		$location.hash(id);
 	    $anchorScroll();
 	}
+                       
+    $scope.getUserDetails = function() {
+        Spinner.start();
+        Parse.getUserDetails(function(result) {
+            $scope.$apply(function() {
+                $scope.userDetails = {
+                    "address": result.get('address'),
+                    "address2": result.get('address2'),
+                    "city": result.get('city'),
+                    "state": result.get('state'),
+                    "zipcode": result.get('zipcode'),
+                    "username": $scope.user.get('username'),
+                    "firstName": $scope.user.get('firstName'),
+                    "lastName": $scope.user.get('lastName')
+                };
+
+                Spinner.stop();
+            })
+        }, function(error) {
+            $scope.$apply(function() { Spinner.stop() })
+        });
+    };
+                       
+    $scope.updateAccount = function() {
+        Spinner.start();
+        if($scope.editAccountForm.email.$error.required || $scope.editAccountForm.email.$error.email) {
+            navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
+            Spinner.stop();
+        } else {
+            Parse.updateAccount($scope.userDetails, function() {
+                $scope.$apply(function() {
+                    Spinner.stop();
+                    Navigation.back();
+                })
+            }, function(error) {
+                $scope.$apply(function() { Spinner.stop() })
+            });
+        }
+    };
 	
 	init();
 	
 	function init() {
 		$scope.user = Parse.getUser();
 	};
+                       
+    $scope.userDetails = {};
+    
+    $scope.$on('broadcastSpinning', function() {
+        $scope.spinning = Spinner.spinning;
+    });
 });
