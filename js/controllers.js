@@ -53,7 +53,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
             navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
             Spinner.stop();
         } else if($scope.signupForm.password.$error.required || $scope.signupForm.password.$error.minlength) {
-            navigator.notification.alert(Parse.passwordInvalid.message, function() {}, Parse.passwordInvalid.message, "OK");
+            navigator.notification.alert(Parse.passwordInvalid.message, function() {}, Parse.passwordInvalid.title, "OK");
             Spinner.stop();
         } else {
             Parse.signUp($scope.newUser, function() {
@@ -61,6 +61,8 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
                     Spinner.stop();
                     Navigation.slidePage('/','slide');
                 })
+            }, function(error) {
+                $scope.$apply(function() { Spinner.stop() })
             });
         }
 	};
@@ -115,7 +117,10 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
 	$scope.addListing = function() {
 		Parse.addListing($scope.listing, newListingImageData, function() {
             $scope.$apply(function() {
-                Navigation.slidePage('/listings','slide');
+                // Set to navigate to a success page with two options.
+                // 1. Sell another 2. Go to dashboard/home.
+                Navigation.back();
+                navigator.notification.alert("Your item is for sale.", function() {}, "Hooray!", "OK");
             });
 		});
 	};
@@ -222,11 +227,11 @@ automizeApp.controller('AccountController', function($scope, $location, $anchorS
 	    $anchorScroll();
 	}
                        
-    $scope.getUserDetails = function() {
+    $scope.getUserDetail = function() {
         Spinner.start();
-        Parse.getUserDetails(function(result) {
+        Parse.getUserDetail(function(result) {
             $scope.$apply(function() {
-                $scope.userDetails = {
+                $scope.userDetail = {
                     "address": result.get('address'),
                     "address2": result.get('address2'),
                     "city": result.get('city'),
@@ -250,7 +255,7 @@ automizeApp.controller('AccountController', function($scope, $location, $anchorS
             navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
             Spinner.stop();
         } else {
-            Parse.updateAccount($scope.userDetails, function() {
+            Parse.updateAccount($scope.userDetail, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
                     Navigation.back();
@@ -267,7 +272,7 @@ automizeApp.controller('AccountController', function($scope, $location, $anchorS
 		$scope.user = Parse.getUser();
 	};
                        
-    $scope.userDetails = {};
+    $scope.userDetail = {};
     
     $scope.$on('broadcastSpinning', function() {
         $scope.spinning = Spinner.spinning;

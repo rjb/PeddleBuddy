@@ -11,14 +11,19 @@
 <div id="overlay" ng-show="spinning"></div>
 <div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
 
-<div class="content content-padded">
+<div class="content content-padded gray-background">
 	<br/>
-	<form name="signupForm">
+	<form name="signupForm" ng-submit="signUp()">
         <div class="input-group">
             <input type="text" name="firstName" ng-model="newUser.firstName" placeholder="First Name" required/>
             <input type="text" name="lastName" ng-model="newUser.lastName" placeholder="Last Name" required/>
             <input type="email" name="email" ng-model="newUser.email" placeholder="Email Address" required/>
             <input type="password" name="password" ng-model="newUser.password" placeholder="Password (at least 6 characters)" ng-minlength="6" required/>
         </div>
+        <input type="submit" value="Sign Up" style="visibility:hidden" />
 	</form>
+    <br/>
+    <p class="center" ng-controller="NavigationController">
+        By signing up, you agree to <a ng-click="slidePage('user_agreement', 'slide')">PeddleBuddy's User Agreement</a>.
+    </p>
 </div>

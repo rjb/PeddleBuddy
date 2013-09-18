@@ -11,20 +11,21 @@
 <div id="overlay" ng-show="spinning"></div>
 <div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
 
-<div class="content content-padded" style="background:#F5F5F5;" ng-init="getUserDetails()">
+<div class="content content-padded" style="background:#F5F5F5;" ng-init="getUserDetail()">
     <br/>
-    <form name="editAccountForm">
+    <form name="editAccountForm" ng-submit="updateAccount()">
         <div class="input-group">
-            <input type="text" name="firstName" ng-model="userDetails.firstName" placeholder="First Name" required/>
-            <input type="text" name="lastName" ng-model="userDetails.lastName" placeholder="Last Name" required/>
-            <input type="email" name="email" ng-model="userDetails.username" placeholder="Email" required/>
+            <input type="text" name="firstName" ng-model="userDetail.firstName" placeholder="First Name" required/>
+            <input type="text" name="lastName" ng-model="userDetail.lastName" placeholder="Last Name" required/>
+            <input type="email" name="email" ng-model="userDetail.username" placeholder="Email" required/>
         </div>
         <div class="input-group">
-            <input type="text" name="address" ng-model="userDetails.address" placeholder="Address" required/>
-            <input type="text" name="address2" ng-model="userDetails.address2" placeholder="Apt/Unit/Suite" />
-            <input type="text" name="city" ng-model="userDetails.city" placeholder="City" required/>
-            <input type="text" name="state" ng-model="userDetails.state" placeholder="State" required/>
-            <input type="text" name="zipcode" ng-model="userDetails.zipcode" placeholder="Zipcode" required/>
+            <input type="text" name="address" ng-model="userDetail.address" placeholder="Address" required/>
+            <input type="text" name="address2" ng-model="userDetail.address2" placeholder="Apt./Unit #" />
+            <input type="text" name="city" ng-model="userDetail.city" placeholder="City" required/>
+            <input type="text" name="state" ng-model="userDetail.state" placeholder="State" required/>
+            <input type="tel" name="zipcode" ng-model="userDetail.zipcode" placeholder="Zipcode" required/>
         </div>
+        <input type="submit" value="Update" style="visibility:hidden" />
 	</form>
 </div>

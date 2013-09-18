@@ -29,6 +29,10 @@ select {
     margin-left:-50px;
 }
  
+.gray-background {
+    background:#F5F5F5;
+}
+ 
 .list.prod li { text-align: center; padding: 20px 20px 20px 10px; }
 .list.prod li > a:not([class*="button"]) { margin: -20px -20px -20px -10px; }
 

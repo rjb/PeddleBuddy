@@ -93,6 +93,9 @@ automizeApp.factory('Parse', function() {
             message: "Number of photos allowed is 8."
         },
 		addListing: function(_listing, _photos, callback) {
+            // TODO: Create anonymous promise and put for loop in first then.
+            // see https://www.parse.com/docs/js_guide#promises-series
+            
 			var Listing = Parse.Object.extend("Listing");
 			var ListingPhoto = Parse.Object.extend("ListingPhoto");
         
@@ -121,11 +124,8 @@ automizeApp.factory('Parse', function() {
                 privateListing.set("sellerPrice", _listing.sellerPrice);
                 privateListing.set("condition", _listing.condition);
                 privateListing.set("photos", thePhotos);
-
-                // Initials... MOVE TO CLOUD CODE!!!!!!!!!!!
-                privateListing.set("state", "Pending");
                 
-                privateListing.save();
+                return privateListing.save();
             }).then(function() {
                 callback();
             }, function(error) {
@@ -143,7 +143,7 @@ automizeApp.factory('Parse', function() {
             query.find().then(function(results) {
                 successCallback(results);
             }, function(error) {
-                navigator.notification.alert("Please go back and try again.",function() {},"Unknown Error","Close");
+                navigator.notification.alert("Please go back and try again.",function() {},"Connection Error","Close");
                 errorCallback(error);
             });
 		},
@@ -154,10 +154,10 @@ automizeApp.factory('Parse', function() {
 			query.equalTo("objectId", lId);
             query.include("photos");
 
-            query.find().then(function(results) {
-                successCallback(results[0]);
+            query.first().then(function(results) {
+                successCallback(results);
             }, function(error) {
-                navigator.notification.alert("Please go back and try again.",function() {},"Unknown Error","Close");
+                navigator.notification.alert("Please go back and try again.",function() {},"Connection Error","Close");
                 errorCallback(error);
             });
 		},
@@ -185,28 +185,24 @@ automizeApp.factory('Parse', function() {
             });
         },
         // signupStepOne, signupSetpTwo, etc.
-		signUp: function(_newUser, callback) {
+		signUp: function(_newUser, successCallback, errorCallback) {
             var user = new Parse.User();
-            var userDetails = Parse.Object.extend("UserDetails");
+            var userDetail = Parse.Object.extend("UserDetail");
 
             user.set("username", _newUser.email.toLowerCase());
             user.set("firstName", _newUser.firstName);
             user.set("lastName", _newUser.lastName);
             user.set("password", _newUser.password);
-            
-            var promiseOne = [];
-            promiseOne.push(user.signUp(null));
-            
-            Parse.Promise.when(promiseOne).then(function() {
-                var newUserDetails = new userDetails();
-                                                
-                newUserDetails.setACL(new Parse.ACL(Parse.User.current()));
-                
-                newUserDetails.save();
+                        
+            user.signUp(null).then(function() {
+                var newUserDetail = new userDetail();
+                newUserDetail.setACL(new Parse.ACL(Parse.User.current()));                
+                return newUserDetail.save();
             }).then(function() {
-                callback();
+                successCallback();
             }, function(error) {
-                navigator.notification.alert("Please try again.",function() {},"Sign Up Error","Close");
+                navigator.notification.alert(error.message,function() {},"Sign Up Error","Close");
+                errorCallback(error);
             });
 		},
 		getUser: function() {
@@ -215,9 +211,9 @@ automizeApp.factory('Parse', function() {
 				return currentUser;
 			}
 		},
-        getUserDetails: function(successCallback, errorCallback) {
-            var userDetails = Parse.Object.extend("UserDetails");
-            var query = new Parse.Query(userDetails);
+        getUserDetail: function(successCallback, errorCallback) {
+            var userDetail = Parse.Object.extend("UserDetail");
+            var query = new Parse.Query(userDetail);
             
             query.first().then(function(result){
                 successCallback(result);
@@ -228,8 +224,8 @@ automizeApp.factory('Parse', function() {
         },
         updateAccount: function(user, successCallback, errorCallback) {
             var currentUser = Parse.User.current();
-            var UserDetails = Parse.Object.extend("UserDetails");
-            var query = new Parse.Query(UserDetails);
+            var UserDetail = Parse.Object.extend("UserDetail");
+            var query = new Parse.Query(UserDetail);
             
             query.first().then(function(result) {
                 result.set("address", user.address);
@@ -237,16 +233,16 @@ automizeApp.factory('Parse', function() {
                 result.set("city", user.city);
                 result.set("state", user.state);
                 result.set("zipcode", user.zipcode);
-                result.save();
-                
+                return result.save();
+            }).then(function() {
                 currentUser.set("username", user.username);
                 currentUser.set("firstName", user.firstName);
                 currentUser.set("lastName", user.lastName);
-                currentUser.save();
-                               
-                successCallback(result);
-            }, function(error){
-                navigator.notification.alert("Please try again.",function() {},"Error","Close");
+                return currentUser.save();
+            }).then(function(){
+                successCallback();
+            }, function(error) {
+                navigator.notification.alert(error.message,function() {},"Error","Close");
                 errorCallback(error);
             });
         },
@@ -260,7 +256,7 @@ automizeApp.factory('Parse', function() {
             query.find().then(function(results) {
                 successCallback(results[0]);
             }, function(error) {
-                navigator.notification.alert("Please go back a try again.",function() {},"Unknown Error","Close");
+                navigator.notification.alert("Please go back a try again.",function() {},"Connection Error","Close");
                 errorCallback(error);
             });
         }

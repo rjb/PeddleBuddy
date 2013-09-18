@@ -10,6 +10,7 @@ var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-nav
             when('/contact',		 { controller:'PageController', 	templateUrl:'partials/contact.html' }).
             when('/privacy',		 { controller:'PageController', 	templateUrl:'partials/privacy.html' }).
             when('/tos',             { controller:'PageController', 	templateUrl:'partials/tos.html' }).
+            when('/user_agreement',  { controller:'PageController', 	templateUrl:'partials/user_agreement.html' }).
             when('/welcome', 		 { controller:'WelcomeController', 	templateUrl:'partials/welcome.html' }).
 			when('/login', 			 { controller:'LoginController', 	templateUrl:'partials/login.html' }).
 			when('/signup', 		 { controller:'LoginController', 	templateUrl:'partials/signup.html' }).
@@ -17,7 +18,7 @@ var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-nav
 			when('/sell', 	 		 { controller:'ListingsController', templateUrl:'partials/sell.html' }).
 			when('/listings', 		 { controller:'ListingsController', templateUrl:'partials/listings.html' }).
 			when('/listings/:pOjId', { controller:'ListingsController', templateUrl:'partials/listing.html' }).
-			when('/account', 	  	 { controller:'AccountController',  templateUrl:'partials/account_settings.html' }).
+			when('/account', 	  	 { controller:'AccountController',  templateUrl:'partials/account.html' }).
 			when('/edit_account', 	 { controller:'AccountController',  templateUrl:'partials/edit_account.html' }).
 			when('/account/payment', { controller:'AccountController',  templateUrl:'partials/payment_settings.html' }).
 			otherwise({ redirectTo: '/welcome' });

@@ -11,14 +11,17 @@
 <div id="overlay" ng-show="spinning"></div>
 <div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
 
-<div class="content content-padded">
+<div class="content content-padded gray-background">
     <br/>
-	<form name="loginForm">
+	<form name="loginForm" ng-submit="login()">
         <div class="input-group">
             <input type="email" name="email" ng-model="credentials.username" placeholder="Email" required/>
             <input type="password" name="password" ng-model="credentials.password" placeholder="Password" />
         </div>
+        <input type="submit" value="Sign In" style="visibility:hidden" />
 	</form>
 	<br />
-    <p class="center" ng-controller="NavigationController"><a ng-click="slidePage('reset_password', 'slide')">Forgot your password?</a></p>
+    <p class="center" ng-controller="NavigationController">
+        <a ng-click="slidePage('reset_password', 'slide')">Forgot your password?</a>
+    </p>
 </div>

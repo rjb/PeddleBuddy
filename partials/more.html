@@ -5,7 +5,7 @@
   	<h1 class="title">More</h1>
 </header>
 
-<div class="content" style="background:#F5F5F5;">
+<div class="content gray-background">
     <br/>
     <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
         <li>
@@ -29,6 +29,12 @@
     </ul>
     <br/>
     <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
+        <li>
+            <a ng-click="slidePage('/user_agreement', 'slide')">
+                User Agreement
+            </a>
+            <span class="chevron"></span>
+        </li>
         <li>
             <a ng-click="slidePage('/privacy', 'slide')">
                 Privacy Statement
