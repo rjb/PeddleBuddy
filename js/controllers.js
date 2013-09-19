@@ -118,12 +118,13 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
 
 automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, Navigation, Spinner) {
 	$scope.addListing = function() {
+        Spinner.start();
 		Parse.addListing($scope.listing, newListingImageData, function() {
             $scope.$apply(function() {
                 // Set to navigate to a success page with two options.
                 // 1. Sell another 2. Go to dashboard/home.
-                Navigation.back();
-                navigator.notification.alert("Your item is for sale.", function() {}, "Hooray!", "OK");
+                Spinner.stop();
+                Navigation.slidePage('/sell_success','slide');
             });
 		});
 	};

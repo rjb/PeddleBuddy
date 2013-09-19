@@ -5,6 +5,9 @@
   	<h1 class="title">Sell</h1>
 </header>
 
+<div id="overlay" ng-show="spinning"></div>
+<div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
+
 <div class="content">
     <!--
 	<div ng-show="newListingPhotos == 0" class="new-listing-instructions center">
