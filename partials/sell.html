@@ -36,7 +36,7 @@
         <li class="list-divider" ng-show="newListingPhotos == 0" style="color:#999999;">2. What are you selling?</li>
         <li class="list-divider" ng-show="newListingPhotos.length > 0">2. What are you selling?</li>
         <li style="padding-bottom:0;">
-            <form ng-submit="addListing()" name="addListingForm" enctype="multipart/form-data">
+            <form name="addListingForm" enctype="multipart/form-data">
                 <input type="text" name="sellerDescription" ng-model="listing.sellerDescription" placeholder="Short desc. (ex. JCrew dress large)" required ng-disabled="newListingPhotos == 0">
 
                 <!-- <select ng-model='listing.condition' ng-options='option.value as option.name for option in conditionOptions'></select> ->
@@ -84,7 +84,7 @@
         <p class="new-listing-note">
             As soon as you submit your item, one of our team members will list it for sale!
         </p><br /><br/>
-        <button type="submit" class="btn button button-block" ng-disabled="newListingPhotos == 0">3. Confirm and submit</button>
+        <button ng-click="addListing()" class="btn button button-block" ng-disabled="newListingPhotos == 0 || addListingForm.sellerDescription.$invalid">3. Confirm and submit</button>
     </div>
     </form>
 </div>

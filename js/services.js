@@ -96,11 +96,15 @@ automizeApp.factory('Parse', function() {
             title: "Reset Error",
             message: "Please make sure your email address is correct."
         },
+        sellerDescInvalid: {
+            title: "What Are You Selling?",
+            message: "Please enter a short description of what you are selling."
+        },
         photoInvalid: {
             title: "Too Many Photos",
             message: "Number of photos allowed is 8."
         },
-		addListing: function(_listing, _photos, callback) {
+		addListing: function(_listing, _photos, successCallback, errorCallback) {
             // TODO: Create anonymous promise and put for loop in first then.
             // see https://www.parse.com/docs/js_guide#promises-series
             
@@ -135,10 +139,11 @@ automizeApp.factory('Parse', function() {
                 
                 return privateListing.save();
             }).then(function() {
-                callback();
+                successCallback();
             }, function(error) {
                 console.error("Parse.addListing error " + error.code + " : " + error.message);
                 navigator.notification.alert(error.message,function() {},"Oops!","Close");
+                errorCallback(error);
             });
 		},
 		getListings: function(successCallback, errorCallback) {

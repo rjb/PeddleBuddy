@@ -119,14 +119,22 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
 automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, Navigation, Spinner) {
 	$scope.addListing = function() {
         Spinner.start();
-		Parse.addListing($scope.listing, newListingImageData, function() {
-            $scope.$apply(function() {
-                // Set to navigate to a success page with two options.
-                // 1. Sell another 2. Go to dashboard/home.
-                Spinner.stop();
-                Navigation.slidePage('/sell_success','slide');
+        if($scope.newListingPhotos.length < 1) {
+            Spinner.stop();
+            navigator.notification.alert("Take 4 to 8 photos of what you're selling.", function() {}, "Snap Some Photos", "OK");
+        } else if($scope.addListingForm.sellerDescription.$invalid) {
+            Spinner.stop();
+            navigator.notification.alert(Parse.sellerDescInvalid.message, function() {}, Parse.sellerDescInvalid.title, "OK");
+        } else {
+            Parse.addListing($scope.listing, newListingImageData, function() {
+                $scope.$apply(function() {
+                    Spinner.stop();
+                    Navigation.slidePage('/sell_success','slide');
+                });
+            }, function(error) {
+                $scope.$apply(function() { Spinner.stop() })
             });
-		});
+        }
 	};
                        
     $scope.cancelNewListing = function() {
