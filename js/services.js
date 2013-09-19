@@ -129,6 +129,7 @@ automizeApp.factory('Parse', function() {
             }).then(function() {
                 callback();
             }, function(error) {
+                console.error("Parse.addListing error " + error.code + " : " + error.message);
                 navigator.notification.alert(error.message,function() {},"Oops!","Close");
             });
 		},
@@ -143,6 +144,7 @@ automizeApp.factory('Parse', function() {
             query.find().then(function(results) {
                 successCallback(results);
             }, function(error) {
+                console.error("Parse.getListings error " + error.code + " : " + error.message);
                 navigator.notification.alert("Please go back and try again.",function() {},"Connection Error","Close");
                 errorCallback(error);
             });
@@ -157,6 +159,7 @@ automizeApp.factory('Parse', function() {
             query.first().then(function(results) {
                 successCallback(results);
             }, function(error) {
+                console.error("Parse.getListing error " + error.code + " : " + error.message);
                 navigator.notification.alert("Please go back and try again.",function() {},"Connection Error","Close");
                 errorCallback(error);
             });
@@ -218,6 +221,7 @@ automizeApp.factory('Parse', function() {
             query.first().then(function(result){
                 successCallback(result);
             }, function(error){
+                console.error("Parse.getUserDetail error " + error.code + " : " + error.message);
                 navigator.notification.alert("Please go back and try again.",function() {},"Error","Close");
                 errorCallback(error);
             });
@@ -256,6 +260,7 @@ automizeApp.factory('Parse', function() {
             query.find().then(function(results) {
                 successCallback(results[0]);
             }, function(error) {
+                console.error("Parse.getPage error " + error.code + " : " + error.message);
                 navigator.notification.alert("Please go back a try again.",function() {},"Connection Error","Close");
                 errorCallback(error);
             });
