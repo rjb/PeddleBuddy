@@ -49,10 +49,13 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
 	             
 	$scope.signUp = function() {
         Spinner.start();
-        if($scope.signupForm.email.$error.required || $scope.signupForm.email.$error.email) {
+        if($scope.signupForm.firstName.$invalid || $scope.signupForm.lastName.$invalid) {
+            navigator.notification.alert(Parse.nameInvalid.message, function() {}, Parse.nameInvalid.title, "OK");
+            Spinner.stop();
+        } else if($scope.signupForm.email.$invalid) {
             navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
             Spinner.stop();
-        } else if($scope.signupForm.password.$error.required || $scope.signupForm.password.$error.minlength) {
+        } else if($scope.signupForm.password.$invalid) {
             navigator.notification.alert(Parse.passwordInvalid.message, function() {}, Parse.passwordInvalid.title, "OK");
             Spinner.stop();
         } else {
@@ -69,7 +72,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
     
 	$scope.login = function() {
         Spinner.start();
-        if($scope.loginForm.email.$error.required || $scope.loginForm.email.$error.email) {
+        if($scope.loginForm.email.$invalid || $scope.loginForm.email.$invalid) {
             navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
             Spinner.stop();
         } else {
@@ -93,7 +96,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
                        
     $scope.resetPassword = function() {
         Spinner.start();
-        if($scope.passwordResetForm.email.$error.required || $scope.passwordResetForm.email.$error.email) {
+        if($scope.passwordResetForm.email.$invalid) {
             navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
             Spinner.stop();
         } else {
@@ -251,8 +254,15 @@ automizeApp.controller('AccountController', function($scope, $location, $anchorS
                        
     $scope.updateAccount = function() {
         Spinner.start();
-        if($scope.editAccountForm.email.$error.required || $scope.editAccountForm.email.$error.email) {
+        
+        if($scope.editAccountForm.firstName.$invalid || $scope.editAccountForm.lastName.$invalid) {
+            navigator.notification.alert(Parse.nameInvalid.message, function() {}, Parse.nameInvalid.title, "OK");
+            Spinner.stop();
+        } else if($scope.editAccountForm.email.$invalid) {
             navigator.notification.alert(Parse.emailInvalid.message, function() {}, Parse.emailInvalid.title, "OK");
+            Spinner.stop();
+        } else if($scope.editAccountForm.address.$invalid || $scope.editAccountForm.city.$invalid || $scope.editAccountForm.state.$invalid || $scope.editAccountForm.zipcode.$invalid) {
+            navigator.notification.alert(Parse.addressInvalid.message, function() {}, Parse.addressInvalid.title, "OK");
             Spinner.stop();
         } else {
             Parse.updateAccount($scope.userDetail, function() {

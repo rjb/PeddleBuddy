@@ -68,9 +68,17 @@ automizeApp.factory('Parse', function() {
 	Parse.initialize("HtjnRGYhpDYLR0nr9RpzHaVoeTFPYzipwGUaqcnr", "udOXbcxu1ewji0D2BziyRFd7EnrNyLkrWcMd4vEo");
 						
 	return {
+        nameInvalid: {
+            title: "Sign Up Error",
+            message: "Please enter your first and last name."
+        },
         emailInvalid: {
             title: "Invalid Email Address",
             message: "Please check your email address."
+        },
+        addressInvalid: {
+            title: "Sign Up Error",
+            message: "Please enter your complete address."
         },
         passwordInvalid: {
             title: "Password Is Too Short",
