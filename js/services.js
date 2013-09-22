@@ -69,7 +69,7 @@ automizeApp.factory('Parse', function() {
 						
 	return {
         nameInvalid: {
-            title: "Sign Up Error",
+            title: "Name Error",
             message: "Please enter your first and last name."
         },
         emailInvalid: {
@@ -77,7 +77,7 @@ automizeApp.factory('Parse', function() {
             message: "Please check your email address."
         },
         addressInvalid: {
-            title: "Sign Up Error",
+            title: "Address Error",
             message: "Please enter your complete address."
         },
         passwordInvalid: {
@@ -203,7 +203,6 @@ automizeApp.factory('Parse', function() {
         // signupStepOne, signupSetpTwo, etc.
 		signUp: function(_newUser, successCallback, errorCallback) {
             var user = new Parse.User();
-            var userDetail = Parse.Object.extend("UserDetail");
 
             user.set("username", _newUser.email.toLowerCase());
             user.set("firstName", _newUser.firstName);
@@ -211,16 +210,30 @@ automizeApp.factory('Parse', function() {
             user.set("password", _newUser.password);
                         
             user.signUp(null).then(function() {
-                var newUserDetail = new userDetail();
-                newUserDetail.setACL(new Parse.ACL(Parse.User.current()));                
-                return newUserDetail.save();
-            }).then(function() {
                 successCallback();
             }, function(error) {
                 navigator.notification.alert(error.message,function() {},"Sign Up Error","Close");
                 errorCallback(error);
             });
 		},
+        signUpStepTwo: function(address, successCallback, errorCallback) {
+            var UserDetail = Parse.Object.extend("UserDetail");
+            var newUserDetail = new UserDetail();
+                    
+            newUserDetail.setACL(new Parse.ACL(Parse.User.current()));
+            newUserDetail.set("address", address.address);
+            newUserDetail.set("address2", address.address2);
+            newUserDetail.set("city", address.city);
+            newUserDetail.set("state", address.state);
+            newUserDetail.set("zipcode", address.zipcode);
+            
+            newUserDetail.save().then(function() {
+                successCallback();
+            }, function(error) {
+                navigator.notification.alert(error.message,function() {},"Address Error","Close");
+                errorCallback(error);
+            });
+        },
 		getUser: function() {
 			var currentUser = Parse.User.current();
 			if (currentUser) {

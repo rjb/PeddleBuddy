@@ -1,0 +1,27 @@
+<header class="bar-title">
+  	<h1 class="title">Address</h1>
+	<a class="button" ng-click="signUpStepTwo()">
+    	Next
+  	</a>
+</header>
+
+<div id="overlay" ng-show="spinning"></div>
+<div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
+
+<div class="content content-padded gray-background">
+    <br/>
+    <h3>What's your mailing address?</h3>
+    <br/>
+    <p>This is where we mail your packing kits when your items sell.</p>
+    <br/>
+    <form name="addressForm" ng-submit="signUpStepTwo()">
+        <div class="input-group">
+            <input type="text" name="address" ng-model="userDetail.address" placeholder="Address" required/>
+            <input type="text" name="address2" ng-model="userDetail.address2" placeholder="Apt./Unit #" />
+            <input type="text" name="city" ng-model="userDetail.city" placeholder="City" required/>
+            <input type="text" name="state" ng-model="userDetail.state" placeholder="State" required/>
+            <input type="tel" name="zipcode" ng-model="userDetail.zipcode" placeholder="Zipcode" required/>
+        </div>
+        <input type="submit" value="Next" style="visibility:hidden" />
+	</form>
+</div>

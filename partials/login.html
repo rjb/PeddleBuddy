@@ -18,10 +18,10 @@
             <input type="email" name="email" ng-model="credentials.username" placeholder="Email" required/>
             <input type="password" name="password" ng-model="credentials.password" placeholder="Password" />
         </div>
+        <br/>
+        <p class="center" ng-controller="NavigationController">
+            <a ng-click="slidePage('/reset_password', 'slide')">Forgot your password?</a>
+        </p>
         <input type="submit" value="Sign In" style="visibility:hidden" />
 	</form>
-	<br />
-    <p class="center" ng-controller="NavigationController">
-        <a ng-click="slidePage('/reset_password', 'slide')">Forgot your password?</a>
-    </p>
 </div>

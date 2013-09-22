@@ -62,13 +62,30 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
             Parse.signUp($scope.newUser, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
-                    Navigation.slidePage('/','slide');
+                    Navigation.slidePage('/signup_two','slide');
                 })
             }, function(error) {
                 $scope.$apply(function() { Spinner.stop() })
             });
         }
 	};
+                       
+    $scope.signUpStepTwo = function() {
+        Spinner.start();
+        if($scope.addressForm.$invalid) {
+            Spinner.stop();
+            navigator.notification.alert("Please enter a complete and valid address", function() {}, Parse.addressInvalid.title, "OK");
+        } else {
+            Parse.signUpStepTwo($scope.userDetail, function() {
+                $scope.$apply(function() {
+                    Spinner.stop();
+                    Navigation.slidePage('/signup_three', 'slide');
+                }, function(error) {
+                    $scope.$apply(function() { Spinner.stop() })
+                });
+            });
+        }
+    };
     
 	$scope.login = function() {
         Spinner.start();
@@ -186,7 +203,7 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
     	}
 
         // Take picture using device camera and retrieve image as base64-encoded string
-		if ($scope.newListingPhotos.length < 8) {
+		if ($scope.newListingPhotos.length <= 8) {
 			navigator.camera.getPicture(onSuccess,onFail,options);
 		} else {
 			navigator.notification.alert(Parse.photoInvalid.message,function() {},Parse.photoInvalid.title,"Close");

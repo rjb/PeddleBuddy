@@ -1,8 +1,5 @@
 <header class="bar-title" ng-controller="NavigationController">
-    <a class="button" ng-click="slidePage('/', 'slide')">
-    	Home
-  	</a>
-  	<h1 class="title">Success!</h1>
+  	<h1 class="title">Huzzah!</h1>
 </header>
 
 <div id="overlay" ng-show="spinning"></div>
@@ -10,9 +7,15 @@
 
 <div class="content content-padded gray-background" ng-controller="NavigationController">
     <br/>
-    <p>Huzzah... Your item has been successfully submitted! We will have your item up for sale within 24 hours ;)</p>
+    <h3>What happens next?</h3>
+    <br/>
+    <p>Your item has been successfully submitted! We will have your item up for sale within 24 hours ;)</p>
     <br/><br/>
     <a ng-click="back()" class="btn button button-block get-started">
         Sell Another Item
     </a>
+    <br />
+    <p class="center">
+    <a ng-click="slidePage('/', 'slide')">Go Back Home</a>
+    </p>
 </div>
