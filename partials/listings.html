@@ -10,27 +10,28 @@
 
 <div class="content" ng-init="getListings()">
     <div ng-show="listings == 0 && !spinning" class="center"><br/><br/><h3>No listings yet</h3></div>
-	<ul class="list">
+	<ul class="list listings">
 		<li ng-repeat="listing in listings">
 			<a ng-click="slidePage('/listings/{{ listing.id }}', 'slide')" ng-controller="NavigationController">
 				<table>
 					<tr>
 						<td>
-							<span class="listing-badge {{ listing.get('state') }}">{{ listing.get('state') }}</span>
-							<img ng-src="{{ listing.get('photos')[0].get('photo').url() }}" width="120px" height="120px" />
+							<span class="listing-badge {{ listing.get('state') }} lb-ab">{{ listing.get('state') }}</span>
+							<img ng-src="{{ listing.get('photos')[0].get('photo').url() }}" width="100px" height="100px" />
 						</td>
 						<td valign="top" style="padding-left:10px;">
-							<h4>{{ listing.get("sellerDescription") }}
-								<span ng-show="listing.get('sellerPrice')">
-									- ({{ listing.get("sellerPrice") | currency }})
-								</span>
-							</h4>
-							<p style="color:#777;">{{ listing.createdAt | date:'medium' }}</p>
+							<h4>{{ listing.get("sellerDescription") }}</h4>
+							<p style="color:#777;">
+                                {{ listing.get("condition") }}
+                            </p>
+                            <p style="color:#777;">
+                                {{ listing.get("sellerPrice") | currency }}
+                            <p>
 						</td>
 					</tr>
 				</table>
 			</a>
-			<span class="chevron"></span>
+            <span class="chevron"></span>
 		</li>
 	</ul>
 </div>

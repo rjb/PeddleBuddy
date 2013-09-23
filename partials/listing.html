@@ -2,17 +2,34 @@
   	<a class="button" ng-click="back()">
     	Back
   	</a>
-  	<h1 class="title">PeddleBuddy</h1>
 </header>
 
 <div id="overlay" ng-show="spinning"></div>
 <div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
 
-<div class="content content-padded" ng-init="getListing()">
-	<div>
-        <h3>{{ listing.get('sellerDescription') }} {{ listing.get('sellerPrice') | currency }}</h3>
-        <img ng-src="{{ listing.get('photos')[0].get('photo').url() }}" width="250px" /><br />
-        <br />
-        <a class="button-negative button-block" confirm-action="Are you sure you want to cancel this sale?">Cancel sale</a>
+<div class="content content-padded">
+    <div ng-init="getListing()">
+        <div class="row-fluid">
+            <div class="span8">
+                <h3>{{ sellerDescription }}</h3>
+                <p ng-show="sellerFlaws">{{ sellerFlaws }}</p>
+                <p style="color:#777;">{{ listing.createdAt | date:'mediumDate' }}</p>
+            </div>
+            <div class="span4" style="text-align:right;">
+                <span class="listing-badge {{ state }}">{{ state }}</span>
+            </div>
+        </div>
+        <p>
+            {{ sellerPrice | currency }}
+        </p>
+        <br/>
+        
+        <div ng-repeat="photo in photos">
+            <div class="listing-photo"><img ng-src="{{ photo.get('photo').url() }}" width="90px" /></div>
+        </div>
 	</div>
+    <div style="clear:both;">&nbsp;</div>
+    <a class="button-negative button-block" ng-click="cancelListing()" confirm-action="This will immedietly cancel the sale of this item." confirm-action-title="Cancel this sale?">
+        Cancel Sale
+    </a>
 </div>

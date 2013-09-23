@@ -185,13 +185,22 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
         Spinner.start();
 		Parse.getListing($routeParams.pOjId, function(result) {
 			$scope.$apply(function() {
-				$scope.listing = result;
                 Spinner.stop();
+                $scope.listing = result;
+                $scope.sellerDescription = result.get('sellerDescription');
+                $scope.sellerPrice = result.get('sellerPrice');
+                $scope.sellerFlaws = result.get('condition');
+                $scope.photos = result.get('photos');
+                $scope.state = result.get('state');
 			})
         }, function(error) {
             $scope.$apply(function() { Spinner.stop() })
         });
 	};
+                       
+    $scope.cancelListing = function(listingId) {
+
+    };
 
 	$scope.takePhoto = function() {
 		var options =   {

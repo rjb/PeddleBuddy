@@ -1,4 +1,7 @@
 <header class="bar-title" ng-controller="NavigationController">
+    <a class="button" ng-click="slidePage('/', 'slide')">
+        Home
+    </a>
   	<h1 class="title">Huzzah!</h1>
 </header>
 
@@ -7,15 +10,11 @@
 
 <div class="content content-padded gray-background" ng-controller="NavigationController">
     <br/>
-    <h3>What happens next?</h3>
+    <h3>Success!</h3>
     <br/>
-    <p>Your item has been successfully submitted! We will have your item up for sale within 24 hours ;)</p>
+    <p>Your item has been successfully listed! We'll have your item up for sale within 24 hours ;)</p>
     <br/><br/>
     <a ng-click="back()" class="btn button button-block get-started">
         Sell Another Item
     </a>
-    <br />
-    <p class="center">
-    <a ng-click="slidePage('/', 'slide')">Go Back Home</a>
-    </p>
 </div>
