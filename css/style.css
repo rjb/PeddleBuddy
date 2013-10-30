@@ -124,51 +124,6 @@ select {
 .bar-nav {
 	background-color: #05BC8D;
 }
-
-/* Green
-.bar-title {	
-	background-color: #6AFADC;
-	background-image: -webkit-linear-gradient(top, #6AFADC 0, #5CDABF 100%);
-	background-image: linear-gradient(to bottom, #6AFADC 0, #5CDABF 100%);
-	border-bottom: 1px solid #888;
-}
-
-.bar-title .title {
-  	text-shadow: 1px 1px rgba(0, 0, 0, .5);
-	letter-spacing: 1px;
-}
-*/
-
-.bar-title [class*="button"] {
-	text-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
-	background-color: #33DCA4;
-	background-image: -webkit-linear-gradient(top, #33DCA4 0, #2BBC8D 100%);
-	background-image: linear-gradient(to bottom, #33DCA4 0, #2BBC8D 100%);
-	border: 1px solid #378878;
-}
-
-.bar-title .button-prev:before {
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#50C5AE), to(#6AFADC));
-  background-image: gradient(linear, left bottom, right top, from(#50C5AE), to(#6AFADC));
-}
-
-.bar-title .button-next:before {
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#6AFADC), to(#50C5AE));
-  background-image: gradient(linear, left bottom, right top, from(#6AFADC), to(#50C5AE));
-}
-
-.bar-title .button-prev:before,
-.bar-title .button-next:before {
-  box-shadow: inset 1px 0 #378878, inset 0 1px #378878;
-}
-
-.bar-title .button:active,
-.bar-title .button-prev:active,
-.bar-title .button-next:active,
-.bar-title .button-prev:active:before,
-.bar-title .button-next:active:before {
-  background-color: #56D0B9;
-}
  
 .welcome-btns {
     margin-top: 75px;
