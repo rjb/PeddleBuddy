@@ -1,24 +1,33 @@
-<header class="bar-title">
+<header class="bar-nav">
     <h1 class="title" id="home-logo"></h1>
 </header>
 
-<div class="content gray-background" ng-init="$navigate.eraseHistory()">
-    <ul class="list center selling-form" style="font-weight:bold;font-size:18px;">
-        <li class="center" style="border-bottom: solid 1px #E6E6E6;color:#444444;">
-            $0 Sales | 1 Pending
-        </li>
-    </ul>
+<div class="content" ng-init="$navigate.eraseHistory()">
+    
+    <nav class="metrics">
+        <ul class="segmented-controller inset-el" ng-controller="NavigationController">
+            <li>
+                <a href="#"><span style="font-size:28px">1</span></h3><br/>Pending</a>
+            </li>
+            <li>
+                <a href="#"><span style="font-size:28px">4</span><br/>Selling</a>
+            </li>
+            <li>
+                <a href="#"><span style="font-size:28px">$48</span><br/>Sold</a>
+            </li>
+        </ul>
+    </nav>
     
     <div class="content-padded" ng-controller="NavigationController">
         <br/>
         <div class="row-fluid">
             <div class="span6 center navi">
-                <a ng-click="slidePage('/sell', 'slide')" style="padding:35px 0;">
+                <a ng-click="slidePage('/sell', 'slide')">
                     <img ng-src="assets/images/sell.png" /><br/>Sell
                 </a>
             </div>
             <div class="span6 center navi">
-                <a ng-click="slidePage('/listings', 'slide')" style="padding:35px 0;">
+                <a ng-click="slidePage('/listings', 'slide')">
                     <img ng-src="assets/images/selling.png" /><br/>Listings
                 </a>
             </div>
@@ -26,39 +35,16 @@
         <br/><br/>
         <div class="row-fluid">
             <div class="span6 center navi">
-                <a ng-click="slidePage('/account', 'slide')" style="padding:35px 0;">
+                <a ng-click="slidePage('/account', 'slide')">
                     <img ng-src="assets/images/account.png" /><br/>Account
                 </a>
             </div>
             <div class="span6 center navi" ng-controller="LoginController">
-                <a ng-click="slidePage('/more', 'slide')" style="padding:35px 0;">
+                <a ng-click="slidePage('/more', 'slide')">
                     <img ng-src="assets/images/more.png" /><br/>More
                 </a>
             </div>
         </div>
     </div>
+    
 </div>
-<!--
-<nav class="bar-tab">
-  <ul class="tab-inner">
-    <li class="tab-item active">
-      <a href="#/">
-	    <img class="tab-icon" src="assets/images/house.png" />
-        <div class="tab-label">Home</div>
-      </a>
-    </li>
-    <li class="tab-item">
-      <a href="#/sell">
-	    <img class="tab-icon" src="assets/images/camera.png" />
-        <div class="tab-label">+Sell+</div>
-      </a>
-    </li>
-    <li class="tab-item">
-      <a href="#/listings">
-	    <img class="tab-icon" src="assets/images/graph_bar_trend.png" />
-        <div class="tab-label">Listings</div>
-      </a>
-    </li>
-  </ul>
-</nav>
--->

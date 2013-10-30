@@ -1,5 +1,5 @@
-<header class="bar-title" ng-controller="NavigationController">
-    <a class="button" ng-click="back()">
+<header class="bar-nav" ng-controller="NavigationController">
+    <a class="button-prev" ng-click="back()">
     	Home
   	</a>
   	<h1 class="title">Your Listings</h1>
@@ -10,8 +10,8 @@
 
 <div class="content" ng-init="getListings()">
     <div ng-show="listings == 0 && !spinning" class="center"><br/><br/><h3>No listings yet</h3></div>
-	<ul class="list listings">
-		<li ng-repeat="listing in listings">
+	<ul class="table-view listings">
+		<li class="table-view-cell" ng-repeat="listing in listings">
 			<a ng-click="slidePage('/listings/{{ listing.id }}', 'slide')" ng-controller="NavigationController">
 				<table>
 					<tr>

@@ -1,5 +1,5 @@
-<header class="bar-title" ng-controller="NavigationController">
-    <a class="button" ng-click="back()">
+<header class="bar-nav" ng-controller="NavigationController">
+    <a class="button-prev" ng-click="back()">
     	Home
   	</a>
   	<h1 class="title">More</h1>
@@ -7,26 +7,26 @@
 
 <div class="content gray-background">
     <br/>
-    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
-        <li>
+    <ul class="table-view" ng-controller="NavigationController">
+        <li class="table-view-cell">
             <a ng-click="slidePage('/faq', 'slide')">
                 FAQ
             </a>
             <span class="chevron"></span>
         </li>
-        <li>
+        <li class="table-view-cell">
             <a ng-click="slidePage('/contact', 'slide')">
                 Contact Us
             </a>
             <span class="chevron"></span>
         </li>
-        <li>
+        <li class="table-view-cell">
             <a ng-click="slidePage('/', 'slide')">
                 How it works
             </a>
             <span class="chevron"></span>
         </li>
-        <li>
+        <li class="table-view-cell">
             <a ng-click="slidePage('/about', 'slide')">
                 About PeddleBuddy
             </a>
@@ -34,20 +34,20 @@
         </li>
     </ul>
     <br/>
-    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
-        <li>
+    <ul class="table-view" ng-controller="NavigationController">
+        <li class="table-view-cell">
             <a ng-click="slidePage('/user_agreement', 'slide')">
                 User Agreement
             </a>
             <span class="chevron"></span>
         </li>
-        <li>
+        <li class="table-view-cell">
             <a ng-click="slidePage('/privacy', 'slide')">
                 Privacy Statement
             </a>
             <span class="chevron"></span>
         </li>
-        <li>
+        <li class="table-view-cell">
             <a ng-click="slidePage('/tos', 'slide')">
                 Terms of Service
             </a>

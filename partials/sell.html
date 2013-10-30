@@ -1,4 +1,4 @@
-<header class="bar-title" ng-controller="NavigationController">
+<header class="bar-nav" ng-controller="NavigationController">
     <button class="button" ng-click="cancelNewListing()" confirm-action="Any photos you've taken or information entered will be lost.">
     	Cancel
   	</button>
@@ -21,9 +21,9 @@
     -->
     
     <br />
-    <ul class="list inset selling-form">
-        <li class="list-divider">1. Snap some photos</li>
-        <li>
+    <ul class="table-view inset selling-form">
+        <li class="table-view-cell list-divider">1. Snap some photos</li>
+        <li class="table-view-cell">
             <div ng-click="takePhoto()" style="background-color:#CCECFF;padding:10px;margin-bottom:10px;text-align:center;"><img src="assets/images/camera.png" /></div>
             <div ng-repeat="photo in newListingPhotos" class="new-listing-photos">
                 <img ng-src="{{ photo }}" width="60" height="60" /><!-- - <a href ng-click="dropPhoto(photo)">X</a> -->
@@ -32,13 +32,14 @@
     </ul>
     
     <br />
-    <ul class="list inset selling-form">
-        <li class="list-divider" ng-show="newListingPhotos == 0" style="color:#999999;">2. What are you selling?</li>
-        <li class="list-divider" ng-show="newListingPhotos.length > 0">2. What are you selling?</li>
-        <li style="padding-bottom:0;">
+    <ul class="table-view inset selling-form">
+        <li class="table-view-cell list-divider" ng-show="newListingPhotos == 0" style="color:#999999;">2. What are you selling?</li>
+        <li class="table-view-cell list-divider" ng-show="newListingPhotos.length > 0">2. What are you selling?</li>
+        
+        <li class="table-view-cell paddit" style="padding-bottom:0;">
             <form name="addListingForm" enctype="multipart/form-data">
-                <input type="text" name="sellerDescription" ng-model="listing.sellerDescription" placeholder="Short desc. (ex. JCrew dress large)" required ng-disabled="newListingPhotos == 0">
-
+                <input type="text" name="sellerDescription" ng-model="listing.sellerDescription" placeholder="Short desc. (jcrew dress large)" required ng-disabled="newListingPhotos == 0">
+        </li>
                 <!-- <select ng-model='listing.condition' ng-options='option.value as option.name for option in conditionOptions'></select> ->
 
                 <!--
@@ -47,22 +48,22 @@
                     <a href="" ng-show="optionals" ng-click="optionals = !optionals" style="padding:10px;">- Optional Settings</a>
                 </p>
                 -->
+                
                     
-                <ul class="list selling-form">
-                    <li>
+                    <li class="table-view-cell paddit">
                         <span ng-show="newListingPhotos == 0" style="color:#999999;">Any flaws?</span>
                         <span ng-show="newListingPhotos.length > 0">Any flaws?</span>
                         <div class="toggle" ng-click="toggleFlawOptional()">
                             <div class="toggle-handle"></div>
                         </div>
                     </li>
-                    <li style="padding:0;margin:0;">
+                    <li class="table-view-cell paddit" style="padding:0;margin:0;">
                         <div ng-show="flawOptional" class="optional">
-                            <input type="text" name="sellerCondition" ng-model="listing.condition" placeholder="List any flaws, big or small." ng-disabled="newListingPhotos == 0">
+                            <input type="text" name="sellerCondition" ng-model="listing.condition" placeholder="List holes, stains, mends, etc." ng-disabled="newListingPhotos == 0">
                         </div>
                     </li>
                     
-                    <li>
+                    <li class="table-view-cell paddit">
                         <!-- Let us price it for you? -->
                         <span ng-show="newListingPhotos == 0" style="color:#999999;">Set your own price?</span>
                         <span ng-show="newListingPhotos.length > 0">Set your own price?</span>
@@ -70,21 +71,19 @@
                             <div class="toggle-handle"></div>
                         </div>
                     </li>
-                    <li style="padding:0;margin:0;">
+                    <li class="table-view-cell paddit" style="padding:0;margin:0;">
                         <div ng-show="priceOptional" class="optional">
                             <input type="tel" name="sellerPrice" ng-model="listing.sellerPrice" placeholder="$" ng-disabled="newListingPhotos == 0">
                         </div>
                     </li>
-                </ul>
-        </li>
     </ul>
     
-    <br/>
     <div class="content-padded">
         <p class="new-listing-note">
             As soon as you submit your item, one of our team members will list it for sale!
-        </p><br /><br/>
-        <button ng-click="addListing()" class="btn button button-block" ng-disabled="newListingPhotos == 0 || addListingForm.sellerDescription.$invalid">3. Confirm and submit</button>
+        </p>
+        <br />
+        <button ng-click="addListing()" class="btn button button-primary button-block button-filled">Confirm and submit</button>
     </div>
     </form>
 </div>

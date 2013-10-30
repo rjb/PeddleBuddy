@@ -1,23 +1,22 @@
-<header class="bar-title" ng-controller="NavigationController">
-    <a class="button" ng-click="back()">
-    	Home
-  	</a>
+<header class="bar-nav" ng-controller="LoginController">
+    <a class="button-prev" ng-click="back()" ng-controller="NavigationController" >Home</a>
   	<h1 class="title">Account</h1>
+    <a ng-click="logout()" confirm-action confirm-action-title="Are you sure you would like to sign out?" class="button">Sign Out</a>
 </header>
 
-<div class="content gray-background">
+<div class="content">
     <div class="content-padded">
         <h3>{{ user.get('firstName') }} {{ user.get('lastName') }}</h3>
     </div>
 
-    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
-        <li>
+    <ul class="table-view" ng-controller="NavigationController">
+        <li class="table-view-cell">
             <a ng-click="">
                 Sales ($0)
                 <span class="chevron"></span>
             </a>
         </li>
-        <li>
+        <li class="table-view-cell">
             <a ng-click="">
                 Payment Settings
                 <span class="chevron"></span>
@@ -25,8 +24,9 @@
         </li>
     </ul>
     
-    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
-        <li>
+    <div style="margin-top:20px;"></div>
+    <ul class="table-view" ng-controller="NavigationController">
+        <li class="table-view-cell">
             <a ng-click="">
                 Tell a Friend
                 <span class="chevron"></span>
@@ -34,19 +34,12 @@
         </li>
     </ul>
     
-    <ul class="list inset" style="font-weight:bold;" ng-controller="NavigationController">
-        <li>
+    <div style="margin-top:20px;"></div>
+    <ul class="table-view" ng-controller="NavigationController">
+        <li class="table-view-cell">
             <a ng-click="slidePage('/edit_account', 'slide')">
                 Edit Account
                 <span class="chevron"></span>
-            </a>
-        </li>
-    </ul>
-    
-    <ul class="list inset" style="font-weight:bold;" ng-controller="LoginController">
-        <li>
-            <a ng-click="logout()" confirm-action confirm-action-title="Are you sure you would like to sign out?">
-                Sign Out
             </a>
         </li>
     </ul>

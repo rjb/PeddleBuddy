@@ -1,17 +1,15 @@
-<header class="bar-title" ng-controller="NavigationController">
-    <a class="button" ng-click="back()">
-    	Back
-  	</a>
+<header class="bar-nav" ng-controller="NavigationController">
+    <a class="button-prev" ng-click="back()">Back</a>
   	<h1 class="title">Edit Account</h1>
     <a class="button" ng-click="updateAccount()">
-        Update
+        Save
     </a>
 </header>
 
 <div id="overlay" ng-show="spinning"></div>
 <div id="overlaySpinner" ng-show="spinning" ng-controller="SpinnerController" us-spinner="opts"></div>
 
-<div class="content content-padded" style="background:#F5F5F5;" ng-init="getUserDetail()">
+<div class="content content-padded" ng-init="getUserDetail()">
     <br/>
     <form name="editAccountForm" ng-submit="updateAccount()">
         <div class="input-group">

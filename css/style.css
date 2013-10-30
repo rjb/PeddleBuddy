@@ -1,6 +1,17 @@
 [[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 	display: none !important;
 }
+ 
+ .bar-nav {
+     /* unless iOS 7 */
+     top: 0;
+ }
+ 
+ .inset-el {
+     width: auto;
+     margin-right: 10px;
+     margin-left: 10px;
+ }
 
 select {
 	-webkit-appearance: ;
@@ -36,6 +47,15 @@ select {
 .list.prod li { text-align: center; padding: 20px 20px 20px 10px; }
 .list.prod li > a:not([class*="button"]) { margin: -20px -20px -20px -10px; }
 
+.selling-form .table-view-cell {
+     padding: 11px 12px 12px 15px;
+}
+ 
+ .selling-form .paddit {
+     padding-top: 15px;
+     padding-bottom: 15px;
+ }
+ 
 /*
 .content, .bar-standard {
 	padding-bottom: 60px;
@@ -52,7 +72,7 @@ select {
 }
 
 .navi a {
-    color: #929292;
+    color:#929292;
 }
  
 .lb-ab {
@@ -91,11 +111,6 @@ select {
     text-align: center;
 }
  
-.selling-form li {
-    padding: 20px 10px 20px 10px; /* Take away extra right padding that was used to accomodate counts, chevrons or buttons */
-    border: 0;
-}
- 
 .optional {
     background-color:#CCECFF;
     padding:10px 10px 0 10px;
@@ -106,11 +121,8 @@ select {
 }
 
 /* 05BC8D 5BCF95 */
-.bar-title {	
+.bar-nav {
 	background-color: #05BC8D;
-	background-image: -webkit-linear-gradient(top, #05BC8D 0, #05BC8D 100%);
-	background-image: linear-gradient(to bottom, #05BC8D 0, #05BC8D 100%);
-	border-bottom: 1px solid #AAAAAA;
 }
 
 /* Green
@@ -187,6 +199,45 @@ select {
 }
 
 
+.metrics {
+    padding: 10px 0 0 0;
+    background-color: #ffffff;
+    border-bottom: solid 1px #E6E6E6;
+    color:#444444;
+}
 
+ .bar-nav [class*="button"] {
+     color: #286B5F; /* #70FCCF or #286B5F*/
+ }
 
+ .bar-nav .button:active,
+ .bar-nav .button.active,
+ .bar-nav .button-prev:active,
+ .bar-nav .button-prev.active,
+ .bar-nav .button-next:active,
+ .bar-nav .button-next.active,
+ .bar-nav .button-primary:active,
+ .bar-nav .button-primary.active {
+     color: #286B5F;
+ }
 
+ .bar-nav .button-prev:before,
+ .bar-nav .button-prev:after,
+ .bar-nav .button-next:before,
+ .bar-nav .button-next:after {
+     background-color: #286B5F;
+ }
+
+ .segmented-controller {
+     border-color: #ffffff;
+ }
+ .segmented-controller li {
+     border-left-color: #BDD6EE;
+     border-left: 1px solid #BDD6EE;
+ }
+ .segmented-controller li > a {
+     color: #239EDA;
+ }
+ .segmented-controller li {
+     background-color: #d5e9ff;
+ }
