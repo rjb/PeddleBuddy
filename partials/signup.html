@@ -1,5 +1,5 @@
-<header class="bar-nav" ng-controller="NavigationController">
-	<a class="button-prev" ng-click="back()">
+<header class="bar-nav">
+	<a class="button-prev" ng-click="$navigate.back()">
     	Back
   	</a>
   	<h1 class="title">Get Started</h1>
@@ -21,8 +21,8 @@
             <input type="password" name="password" ng-model="newUser.password" placeholder="Password (at least 6 characters)" ng-minlength="6" required/>
         </div>
         <br/>
-        <p class="center" ng-controller="NavigationController">
-            By signing up, you agree to <a ng-click="slidePage('user_agreement', 'slide')">PeddleBuddy's User Agreement</a>.
+        <p class="center">
+            By signing up, you agree to <a ng-click="$navigate.go('user_agreement', 'slide')">PeddleBuddy's User Agreement</a>.
         </p>
         <input type="submit" value="Sign Up" style="visibility:hidden" />
 	</form>

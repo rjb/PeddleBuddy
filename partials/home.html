@@ -5,7 +5,7 @@
 <div class="content" ng-init="$navigate.eraseHistory()">
     
     <nav class="metrics">
-        <ul class="segmented-controller inset-el" ng-controller="NavigationController">
+        <ul class="segmented-controller inset-el">
             <li>
                 <a href="#"><span style="font-size:28px">1</span></h3><br/>Pending</a>
             </li>
@@ -18,16 +18,16 @@
         </ul>
     </nav>
     
-    <div class="content-padded" ng-controller="NavigationController">
+    <div class="content-padded">
         <br/>
         <div class="row-fluid">
             <div class="span6 center navi">
-                <a ng-click="slidePage('/sell', 'slide')">
+                <a ng-click="$navigate.go('/sell', 'slide')">
                     <img ng-src="assets/images/sell.png" /><br/>Sell
                 </a>
             </div>
             <div class="span6 center navi">
-                <a ng-click="slidePage('/listings', 'slide')">
+                <a ng-click="$navigate.go('/listings', 'slide')">
                     <img ng-src="assets/images/selling.png" /><br/>Listings
                 </a>
             </div>
@@ -35,12 +35,12 @@
         <br/><br/>
         <div class="row-fluid">
             <div class="span6 center navi">
-                <a ng-click="slidePage('/account', 'slide')">
+                <a ng-click="$navigate.go('/account', 'slide')">
                     <img ng-src="assets/images/account.png" /><br/>Account
                 </a>
             </div>
-            <div class="span6 center navi" ng-controller="LoginController">
-                <a ng-click="slidePage('/more', 'slide')">
+            <div class="span6 center navi">
+                <a ng-click="$navigate.go('/more', 'slide')">
                     <img ng-src="assets/images/more.png" /><br/>More
                 </a>
             </div>

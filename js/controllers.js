@@ -5,23 +5,16 @@ automizeApp.controller('SpinnerController', function($scope, Spinner) {
     });
 });
 
-automizeApp.controller('NavigationController', function($scope, Navigation) {
-    $scope.slidePage = function (path,type) {
-        Navigation.slidePage(path,type);
-    };
-
-    $scope.back = function () {
-        Navigation.back();
-    };
-});
-
 automizeApp.controller('WelcomeController', function() {
+    $scope.$navigate = $navigate;
 });
 
-automizeApp.controller('HomeController', function($scope, $location, Parse, Navigation) {
+automizeApp.controller('HomeController', function($scope, $location, $navigate, Parse) {
+    $scope.$navigate = $navigate;
 });
 
-automizeApp.controller('PageController', function($scope, Parse, Spinner) {
+automizeApp.controller('PageController', function($scope, $navigate, Parse, Spinner) {
+    $scope.$navigate = $navigate;
     $scope.pageContent = {};
 
     $scope.getPage = function(title) {
@@ -44,7 +37,8 @@ automizeApp.controller('PageController', function($scope, Parse, Spinner) {
     });
 });
 
-automizeApp.controller('LoginController', function($scope, $location, Parse, Navigation, Spinner) {
+automizeApp.controller('LoginController', function($scope, $location, $navigate, Parse, Spinner) {
+    $scope.$navigate = $navigate;
 	$scope.credentials = { username: "", password: "" };
 	             
 	$scope.signUp = function() {
@@ -62,7 +56,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
             Parse.signUp($scope.newUser, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
-                    Navigation.slidePage('/signup_two','slide');
+                    $navigate.go('/signup_two','slide');
                 })
             }, function(error) {
                 $scope.$apply(function() { Spinner.stop() })
@@ -79,7 +73,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
             Parse.signUpStepTwo($scope.userDetail, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
-                    Navigation.slidePage('/signup_three', 'slide');
+                    $navigate.go('/signup_three', 'slide');
                 }, function(error) {
                     $scope.$apply(function() { Spinner.stop() })
                 });
@@ -96,7 +90,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
             Parse.login($scope.credentials, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
-                    Navigation.slidePage('/','slide');
+                    $navigate.go('/','slide');
                 })
             }, function(error) {
                 $scope.$apply(function() { Spinner.stop() })
@@ -107,7 +101,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
     $scope.logout = function() {
         Parse.logout();
         $scope.$apply(function() {
-            Navigation.slidePage('/welcome','slide');
+            $navigate.go('/welcome','slide');
         })
     };
                        
@@ -120,7 +114,7 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
             Parse.resetPassword($scope.userEmail, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
-                    Navigation.back();
+                    $navigate.back();
                 })
             }, function(error) {
                 $scope.$apply(function() { Spinner.stop() })
@@ -133,7 +127,9 @@ automizeApp.controller('LoginController', function($scope, $location, Parse, Nav
     });
 });
 
-automizeApp.controller('ListingsController', function($scope, $routeParams, $location, Parse, Navigation, Spinner) {
+automizeApp.controller('ListingsController', function($scope, $routeParams, $location, $navigate, Parse, Spinner) {
+    $scope.$navigate = $navigate;
+                       
 	$scope.addListing = function() {
         Spinner.start();
         if($scope.newListingPhotos.length < 1) {
@@ -146,7 +142,7 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
             Parse.addListing($scope.listing, newListingImageData, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
-                    Navigation.slidePage('/sell_success','slide');
+                    $navigate.go('/sell_success','slide');
                 });
             }, function(error) {
                 $scope.$apply(function() { Spinner.stop() })
@@ -156,7 +152,7 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
                        
     $scope.cancelNewListing = function() {
         $scope.$apply(function() {
-            Navigation.back();
+            $navigate.back();
         })
     };
                        
@@ -220,7 +216,7 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
 	};
 
 	var onSuccess = function(imageData) {
-    	console.log("On Success!");
+    	console.log("Photo On Success!");
     	
     	// Push image data
     	newListingImageData.push(imageData);
@@ -259,7 +255,9 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
     });
 });
 
-automizeApp.controller('AccountController', function($scope, $location, $anchorScroll, Parse, Navigation, Spinner) {
+automizeApp.controller('AccountController', function($scope, $location, $anchorScroll, $navigate, Parse, Spinner) {
+    $scope.$navigate = $navigate;
+                       
 	$scope.activate = function(id) {
 		$location.hash(id);
 	    $anchorScroll();
@@ -303,7 +301,7 @@ automizeApp.controller('AccountController', function($scope, $location, $anchorS
             Parse.updateAccount($scope.userDetail, function() {
                 $scope.$apply(function() {
                     Spinner.stop();
-                    Navigation.back();
+                    $navigate.back();
                 })
             }, function(error) {
                 $scope.$apply(function() { Spinner.stop() })

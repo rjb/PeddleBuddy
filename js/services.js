@@ -1,16 +1,5 @@
 'use strict';
 
-automizeApp.factory('Navigation', function($navigate) {
-    return {
-        slidePage: function (path,type) {
-            $navigate.go(path,type);
-        },
-        back: function () {
-            $navigate.back();
-        }
-    }
-});
-
 // Loading Spindle Widget
 automizeApp.factory('LoadingWidget', function() {
 	// Simple loading widget service. Shows a spining wheel for loading list views.

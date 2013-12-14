@@ -1,5 +1,5 @@
-<header class="bar-nav" ng-controller="NavigationController">
-    <a class="button-prev" ng-click="back()">
+<header class="bar-nav">
+    <a class="button-prev" ng-click="$navigate.back()">
     	Home
   	</a>
   	<h1 class="title">More</h1>
@@ -7,48 +7,59 @@
 
 <div class="content gray-background">
     <br/>
-    <ul class="table-view" ng-controller="NavigationController">
+    <ul class="table-view">
         <li class="table-view-cell">
-            <a ng-click="slidePage('/faq', 'slide')">
+            <a ng-click="$navigate.go('/faq', 'slide')">
                 FAQ
             </a>
             <span class="chevron"></span>
         </li>
         <li class="table-view-cell">
-            <a ng-click="slidePage('/contact', 'slide')">
+            <a ng-click="$navigate.go('/contact', 'slide')">
                 Contact Us
             </a>
             <span class="chevron"></span>
         </li>
         <li class="table-view-cell">
-            <a ng-click="slidePage('/', 'slide')">
+            <a ng-click="$navigate.go('/', 'slide')">
                 How it works
             </a>
             <span class="chevron"></span>
         </li>
         <li class="table-view-cell">
-            <a ng-click="slidePage('/about', 'slide')">
+            <a ng-click="$navigate.go('/about', 'slide')">
                 About PeddleBuddy
             </a>
             <span class="chevron"></span>
         </li>
     </ul>
-    <br/>
-    <ul class="table-view" ng-controller="NavigationController">
+    
+    <div style="margin-top:20px;"></div>
+    <ul class="table-view">
         <li class="table-view-cell">
-            <a ng-click="slidePage('/user_agreement', 'slide')">
+            <a ng-click="">
+                Tell a Friend
+                <span class="chevron"></span>
+            </a>
+        </li>
+    </ul>
+    
+    <div style="margin-top:20px;"></div>
+    <ul class="table-view">
+        <li class="table-view-cell">
+            <a ng-click="$navigate.go('/user_agreement', 'slide')">
                 User Agreement
             </a>
             <span class="chevron"></span>
         </li>
         <li class="table-view-cell">
-            <a ng-click="slidePage('/privacy', 'slide')">
+            <a ng-click="$navigate.go('/privacy', 'slide')">
                 Privacy Statement
             </a>
             <span class="chevron"></span>
         </li>
         <li class="table-view-cell">
-            <a ng-click="slidePage('/tos', 'slide')">
+            <a ng-click="$navigate.go('/tos', 'slide')">
                 Terms of Service
             </a>
             <span class="chevron"></span>

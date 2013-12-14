@@ -1,5 +1,5 @@
-<header class="bar-nav" ng-controller="NavigationController">
-    <a class="button-prev" ng-click="back()">
+<header class="bar-nav">
+    <a class="button-prev" ng-click="$navigate.back()">
     	Back
   	</a>
   	<h1 class="title">Sign In</h1>
@@ -19,8 +19,8 @@
             <input type="password" name="password" ng-model="credentials.password" placeholder="Password" />
         </div>
         <br/>
-        <p class="center" ng-controller="NavigationController">
-            <a ng-click="slidePage('/reset_password', 'slide')">Forgot your password?</a>
+        <p class="center">
+            <a ng-click="$navigate.go('/reset_password', 'slide')">Forgot your password?</a>
         </p>
         <input type="submit" value="Sign In" style="visibility:hidden" />
 	</form>

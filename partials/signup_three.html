@@ -1,5 +1,5 @@
 <header class="bar-nav">
-    <a class="button" ng-click="slidePage('/', 'slide')">
+    <a class="button" ng-click="$navigate.go('/', 'slide')">
     	Home
   	</a>
   	<h1 class="title">Sell</h1>
@@ -10,8 +10,8 @@
 
 <div class="content content-padded center">
     <br/><br/>
-    <div class="navi" ng-controller="NavigationController">
-        <a ng-click="slidePage('/sell', 'slide')" style="padding:35px 0;">
+    <div class="navi">
+        <a ng-click="$navigate.go('/sell', 'slide')" style="padding:35px 0;">
             <img ng-src="assets/images/sell-button.png" />
         </a>
     </div>
