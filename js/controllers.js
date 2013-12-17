@@ -1,12 +1,17 @@
-automizeApp.controller('SpinnerController', function($scope, Spinner) {
-    $scope.opts = {radius:10, width:2, length:7, lines:15, corners:1, speed:1.5, trail:75, rotate:0, top:25, left:35, color:"#ffffff"};
-    $scope.$on('broadcastSpinning', function() {
-        $scope.spinning = Spinner.spinning;
-    });
-});
-
 automizeApp.controller('WelcomeController', function() {
     $scope.$navigate = $navigate;
+});
+
+
+automizeApp.controller('SettingsController', function($scope, $navigate, Parse) {
+    $scope.$navigate = $navigate;
+                       
+    $scope.logout = function() {
+        Parse.logout();
+        $scope.$apply(function() {
+            $navigate.go('/welcome','slide');
+        })
+    };
 });
 
 automizeApp.controller('HomeController', function($scope, $location, $navigate, Parse) {
@@ -33,6 +38,7 @@ automizeApp.controller('PageController', function($scope, $navigate, Parse, Spin
     };
                        
     $scope.$on('broadcastSpinning', function() {
+        $scope.opts = Spinner.opts;
         $scope.spinning = Spinner.spinning;
     });
 });
@@ -123,6 +129,7 @@ automizeApp.controller('LoginController', function($scope, $location, $navigate,
     };
                        
     $scope.$on('broadcastSpinning', function() {
+        $scope.opts = Spinner.opts;
         $scope.spinning = Spinner.spinning;
     });
 });
@@ -251,6 +258,7 @@ automizeApp.controller('ListingsController', function($scope, $routeParams, $loc
 	$scope.listings = [];
                        
     $scope.$on('broadcastSpinning', function() {
+        $scope.opts = Spinner.opts;
         $scope.spinning = Spinner.spinning;
     });
 });
@@ -316,8 +324,9 @@ automizeApp.controller('AccountController', function($scope, $location, $anchorS
 	};
                        
     $scope.userDetail = {};
-    
+                       
     $scope.$on('broadcastSpinning', function() {
+        $scope.opts = Spinner.opts;
         $scope.spinning = Spinner.spinning;
     });
 });

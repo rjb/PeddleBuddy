@@ -5,6 +5,7 @@ var automizeApp = angular.module('automizeApp', ['ngMobile', 'ajoslin.mobile-nav
 		$routeProvider.
 			when('/', 			  	 { controller:'HomeController', 	templateUrl:'partials/home.html' }).
             when('/more',			 { controller:'PageController', 	templateUrl:'partials/more.html' }).
+            when('/settings',		 { controller:'SettingsController', templateUrl:'partials/settings.html' }). 
             when('/about',			 { controller:'PageController', 	templateUrl:'partials/about.html' }).
             when('/faq',			 { controller:'PageController', 	templateUrl:'partials/faq.html' }).
             when('/contact',		 { controller:'PageController', 	templateUrl:'partials/contact.html' }).

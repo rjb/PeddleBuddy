@@ -1,11 +1,22 @@
 <header class="bar-nav">
-    <a class="button-prev" ng-click="$navigate.back()">
-    	Home
-  	</a>
-  	<h1 class="title">More</h1>
+  	<h1 class="title">Settings</h1>
 </header>
 
 <div class="content gray-background">
+    <ul class="table-view">
+        <li class="table-view-divider">ACCOUNT</li>
+        <li class="table-view-cell">
+            <a ng-click="$navigate.go('/edit_account', 'slide')">
+                Edit Account
+                <span class="chevron"></span>
+            </a>
+        </li>
+        <li class="table-view-cell">
+            <a ng-click="logout()" confirm-action confirm-action-title="Are you sure you would like to sign out?">Sign Out</a>
+            <span class="chevron"></span>
+        </li>
+    </ul>
+    
     <ul class="table-view">
         <li class="table-view-divider">LEARN MORE</li>
         <li class="table-view-cell">
@@ -15,26 +26,10 @@
             <span class="chevron"></span>
         </li>
         <li class="table-view-cell">
-            <a ng-click="$navigate.go('/', 'slide')">
-                How it works
-            </a>
-            <span class="chevron"></span>
-        </li>
-    </ul>
-    
-    <ul class="table-view">
-        <li class="table-view-divider">PEDDLEBUDDY</li>
-        <li class="table-view-cell">
             <a ng-click="$navigate.go('/contact', 'slide')">
                 Contact Us
             </a>
             <span class="chevron"></span>
-        </li>
-        <li class="table-view-cell">
-            <a ng-click="">
-                Tell a Friend
-                <span class="chevron"></span>
-            </a>
         </li>
     </ul>
     

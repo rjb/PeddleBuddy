@@ -7,6 +7,11 @@
      top: 0;
  }
  
+ 
+ [class*="bar-"] {
+     background-color: #555555;
+ }
+ 
  .inset-el {
      width: auto;
      margin-right: 10px;
@@ -44,6 +49,18 @@ select {
     background:#F5F5F5;
 }
  
+ .sell-bullets li, .sell-bullets ul {
+     list-style: none;
+     margin:0;
+     padding:0;
+     margin-top:6px;
+ }
+ 
+.sell-bullets li {
+    font-size:17px;
+    color:#404040;
+}
+ 
 .list.prod li { text-align: center; padding: 20px 20px 20px 10px; }
 .list.prod li > a:not([class*="button"]) { margin: -20px -20px -20px -10px; }
 
@@ -56,11 +73,14 @@ select {
      padding-bottom: 15px;
  }
  
-/*
 .content, .bar-standard {
-	padding-bottom: 60px;
+	padding-bottom: 50px;
 }
-*/
+ 
+.home-content {
+    background-color: #FFFFFF;
+
+}
 
 /* Push buttons 100% */
 .btn {
@@ -120,9 +140,9 @@ select {
     color: #999999;
 }
 
-/* 05BC8D 5BCF95 */
+/* 05BC8D 5BCF95 6B89E5 #3E50C1 28BF9F 30C1A1 57DD96 */
 .bar-nav {
-	background-color: #05BC8D;
+	background-color: #33DBB6;
 }
  
 .welcome-btns {
@@ -195,4 +215,8 @@ select {
  }
  .segmented-controller li {
      background-color: #d5e9ff;
+ }
+
+.table-view .table-view-divider {
+    padding-top: 30px;
  }

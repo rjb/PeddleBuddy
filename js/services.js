@@ -1,27 +1,5 @@
 'use strict';
 
-// Loading Spindle Widget
-automizeApp.factory('LoadingWidget', function() {
-	// Simple loading widget service. Shows a spining wheel for loading list views.
-
-	// Set inital state
-	var showLoadingWidget = true;
-
-	var spinningWheelPath = "assets/images/preloader.gif";
-
-	return {
-		setLoadingWidgetState: function(widgetState) {
-			showLoadingWidget = widgetState;
-		},
-		showLoadingWidget: function() {
-			return showLoadingWidget;
-		},
-		spinningWheelPath: function() {
-			return spinningWheelPath;
-		}
-	};
-});
-
 var login = angular.module('ParseUser',[]);
 automizeApp.factory('$userLoggedIn', function(){
     Parse.initialize("HtjnRGYhpDYLR0nr9RpzHaVoeTFPYzipwGUaqcnr", "udOXbcxu1ewji0D2BziyRFd7EnrNyLkrWcMd4vEo");
@@ -37,6 +15,7 @@ automizeApp.factory('Spinner', function($rootScope) {
     var spinning = false;
     
     return {
+        opts: {radius:10, width:2, length:7, lines:15, corners:1, speed:1.5, trail:75, rotate:0, top:25, left:35, color:"#ffffff"},
         start: function() {
             this.spinning = true;
             this.broadcast();
