@@ -15,7 +15,7 @@ automizeApp.factory('Spinner', function($rootScope) {
     var spinning = false;
     
     return {
-        opts: {radius:10, width:2, length:7, lines:15, corners:1, speed:1.5, trail:75, rotate:0, top:25, left:35, color:"#ffffff"},
+        opts: {radius:8, width:2, length:6, lines:15, corners:1, speed:1.5, trail:75, rotate:0, top:25, left:35, color:"#111111"},
         start: function() {
             this.spinning = true;
             this.broadcast();

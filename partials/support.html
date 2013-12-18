@@ -1,33 +1,35 @@
 <header class="bar-nav">
-  	<h1 class="title">Settings</h1>
+    <a class="button-prev" ng-click="$navigate.back()">
+    	Back
+  	</a>
+  	<h1 class="title">Support</h1>
 </header>
 
 <div class="content">
-    <ul class="table-view">
-        <li class="table-view-divider">ACCOUNT</li>
-        <li class="table-view-cell">
-            <a ng-click="$navigate.go('/edit_account', 'slide')">
-                Update Account
-                <span class="chevron"></span>
-            </a>
-        </li>
-        <li class="table-view-cell">
-            <a ng-click="logout()" confirm-action confirm-action-title="Are you sure you would like to sign out?">Sign Out</a>
-            <span class="chevron"></span>
-        </li>
-    </ul>
+    <br/>
+    <div class="content-padded">
+        <a href="mailto:support@peddlebuddy.com?Subject=Challenge yourself" class="btn button button-block button-primary button-filled">
+            support@peddlebuddy.com
+        </a>
+    </div>
     
     <ul class="table-view">
-        <li class="table-view-divider">LEARN MORE</li>
+        <li class="table-view-divider">PRIVACY AND SERVICE</li>
         <li class="table-view-cell">
-            <a ng-click="$navigate.go('/faq', 'slide')">
-                FAQ
+            <a ng-click="$navigate.go('/user_agreement', 'slide')">
+                User Agreement
             </a>
             <span class="chevron"></span>
         </li>
         <li class="table-view-cell">
-            <a ng-click="$navigate.go('/support', 'slide')">
-                Support
+            <a ng-click="$navigate.go('/privacy', 'slide')">
+                Privacy Statement
+            </a>
+            <span class="chevron"></span>
+        </li>
+        <li class="table-view-cell">
+            <a ng-click="$navigate.go('/tos', 'slide')">
+                Terms of Service
             </a>
             <span class="chevron"></span>
         </li>

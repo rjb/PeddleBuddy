@@ -1,9 +1,9 @@
-automizeApp.controller('WelcomeController', function() {
+automizeApp.controller('WelcomeController', function($scope, $navigate, Parse, Spinner) {
     $scope.$navigate = $navigate;
 });
 
 
-automizeApp.controller('SettingsController', function($scope, $navigate, Parse) {
+automizeApp.controller('SettingsController', function($scope, $location, $navigate, Parse) {
     $scope.$navigate = $navigate;
                        
     $scope.logout = function() {
