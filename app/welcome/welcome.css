@@ -1,0 +1,38 @@
+.tab-holder {
+    display:none;
+}
+
+.welcome {
+    margin-top: 160px;
+    text-align:center;
+}
+
+.welcome-msg {
+    color: #8DFCD1;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.welcome-more {
+    margin-top: 35px;
+}
+
+.welcome-more-l {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 15px;
+    background-color: #24B799;
+}
+
+.welcome-more-l a {
+    color: #ffffff;
+}
+
+.welcome-tab .tab-item a {
+    color:#ffffff;
+    font-weight:bold;
+}
+
+.welcome-tab .signup-tab {
+    background-color:#297AFC;
+}

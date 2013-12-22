@@ -1,0 +1,27 @@
+<div class="content content-padded" id="welcome-page">
+    <br/>
+    <div id="welcome-logo"></div>
+    <div class="welcome">
+        <div class="welcome-msg">We sell for you</div>
+        <div class="welcome-more">
+            <span class="welcome-more-l">
+                <a ng-click="$navigate.go('/learn', 'slide')">Learn More</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<nav class="bar-tab welcome-tab">
+    <ul class="tab-inner">
+        <li class="tab-item content-padded">
+            <a ng-click="$navigate.go('/user-login', 'slide')">
+                Log In
+            </a>
+        </li>
+        <li class="tab-item content-padded signup-tab">
+            <a ng-click="$navigate.go('/user-signup-1', 'slide')">
+                Sign Up
+            </a>
+        </li>
+    </ul>
+</nav>

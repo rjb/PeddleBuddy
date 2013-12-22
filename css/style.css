@@ -2,16 +2,17 @@
 	display: none !important;
 }
 
- [class*="bar-"] {
+[class*="bar-"] {
     background-color: #555555;
 }
  
 .bar-nav {
     /* unless iOS 7 */
     top: 0;
-    
-    /* 05BC8D 5BCF95 6B89E5 #3E50C1 28BF9F 30C1A1 57DD96 */
-    background-color: #33DBB6;
+     
+    -webkit-box-shadow: 0 -20px 0 rgba(51, 219, 182, 1), 0 0 1px rgba(0, 0, 0, 0.85);
+    box-shadow: 0 -20px 0 rgba(51, 219, 182, 1), 0 0 1px rgba(0, 0, 0, 0.85);
+    background-color: rgba(51, 219, 182, 1);
 }
  
 .inset-el {
@@ -31,6 +32,7 @@ select {
     width:100%;
     height:100%;
     z-index:10;
+    /* check for iOS 7 */
     top:45px;
     left:0;
     position:fixed;
@@ -51,26 +53,6 @@ select {
     background:#F5F5F5;
 }
  
-.snap-text {
-    margin-bottom:10px;
-}
- 
-.sell-bullets {
-    margin-top:20px;
-}
- 
-.sell-bullets li, .sell-bullets ul {
-    list-style: none;
-    margin:0;
-    padding:0;
-    margin-top:6px;
-}
- 
-.sell-bullets li {
-    font-size:17px;
-    color:#404040;
-}
- 
 .list.prod li { text-align: center; padding: 20px 20px 20px 10px; }
 .list.prod li > a:not([class*="button"]) { margin: -20px -20px -20px -10px; }
 
@@ -89,6 +71,10 @@ select {
  
 .content, .table-view .table-view-divider {
     background-color:#F8F8F8;
+}
+ 
+.table-view .table-view-cell > a:not([class*="button"]):active {
+    background-color:#F0F0F0;
 }
  
 .home-content {

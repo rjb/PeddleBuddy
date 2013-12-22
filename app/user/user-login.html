@@ -1,0 +1,27 @@
+<header class="bar-nav">
+    <a class="button-prev" ng-click="$navigate.back()">
+    	Back
+  	</a>
+  	<h1 class="title">Log In</h1>
+    <a class="button" ng-click="login()">
+    	Log In
+  	</a>
+</header>
+
+<div id="overlay" ng-show="spinning"></div>
+<div id="overlaySpinner" ng-show="spinning" us-spinner="opts"></div>
+
+<div class="content content-padded gray-background">
+    <br/>
+	<form name="loginForm" ng-submit="login()">
+        <div class="input-group">
+            <input type="email" name="email" ng-model="credentials.username" placeholder="Email" required/>
+            <input type="password" name="password" ng-model="credentials.password" placeholder="Password" />
+        </div>
+        <br/>
+        <p class="center">
+        <a ng-click="$navigate.go('/user-reset-password', 'slide')">Forgot your password?</a>
+        </p>
+        <input type="submit" value="Sign In" style="visibility:hidden" />
+	</form>
+</div>
