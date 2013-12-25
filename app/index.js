@@ -38,5 +38,10 @@ var app = {
         /*angular.element(document).ready(function() {
             angular.bootstrap(document);
         });*/
+        
+        var iosTag = document.getElementById('ios-seven-stylesheet');
+        if(parseInt(device.version) >= 7) {
+            iosTag.href = "css/ios7.css";
+        }
     }
 };
