@@ -10,28 +10,25 @@
 <div class="content content-padded">
     <div ng-init="getListing()">
         <div class="row-fluid">
-            <div class="span8">
-                <h3>{{ sellerDescription }}</h3>
-                <p ng-show="sellerFlaws">{{ sellerFlaws }}</p>
+            <div class="span12">
                 <p style="color:#777;">{{ listing.createdAt | date:'mediumDate' }}</p>
-            </div>
-            <div class="span4" style="text-align:right;">
-                <span class="listing-badge {{ state }}">{{ state }}</span>
+                <h3>{{ sellerDescription }}</h3>
+                <span class="listing-state {{ state }}">{{ state }}</span>
+                <span>{{ sellerPrice | currency }}</span>
+                <p ng-show="sellerFlaws">Flaws: {{ sellerFlaws }}</p>
             </div>
         </div>
-        <p>
-        {{ sellerPrice | currency }}
-        </p>
-        <br/>
-        
+        <br/><br/>
         <div ng-repeat="photo in photos">
             <div class="listing-photo"><img ng-src="{{ photo.get('photo').url() }}" width="90px" /></div>
         </div>
 	</div>
     <div style="clear:both;">&nbsp;</div>
-    <a class="button-negative button-block button-filled" ng-click="cancelListing()" confirm-action="This will immedietly cancel the sale of this item." confirm-action-title="Cancel this sale?">
-        Cancel Sale
-    </a>
+    <div ng-hide="spinning">
+        <a class="button-negative button-block button-filled" ng-click="cancelListing()" confirm-action="This will immedietly cancel the sale of this item." confirm-action-title="Cancel this sale?">
+            Cancel Sale
+        </a>
+    </div>
 </div>
 
 <nav class="bar-tab">
