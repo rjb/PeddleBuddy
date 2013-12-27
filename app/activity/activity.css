@@ -8,18 +8,18 @@
 }
 
 .listing-state {
-	color: #fff;
+	color:#fff;
 	padding: 2px 4px;
 }
 
 .listing-state.Sold {
-	background-color: #E1806F;
+	background-color:#e1806f;
 }
 
 .listing-state.Live {
-	background-color: #5CA7DF;
+	background-color:#5Ca7df;
 }
 
 .listing-state.Pending {
-	background-color: #111;
+	background-color:#999999;
 }
