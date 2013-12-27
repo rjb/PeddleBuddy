@@ -1,0 +1,25 @@
+.listings h4 {
+    margin:0 0 5px 0;padding:0;
+}
+
+.listings p {
+    font-size:14px;
+    color:#777;
+}
+
+.listing-state {
+	color: #fff;
+	padding: 2px 4px;
+}
+
+.listing-state.Sold {
+	background-color: #E1806F;
+}
+
+.listing-state.Live {
+	background-color: #5CA7DF;
+}
+
+.listing-state.Pending {
+	background-color: #111;
+}

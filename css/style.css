@@ -98,28 +98,6 @@ select {
 .navi a {
     color:#929292;
 }
- 
-.lb-ab {
-     position: absolute;
-    font-size:13px;
-}
-
-.listing-badge {
-	color: #fff;
-	padding: 2px 4px;
-}
-
-.listing-badge.Sold {
-	background-color: #E1806F;
-}
-
-.listing-badge.Live {
-	background-color: #5CA7DF;
-}
-
-.listing-badge.Pending {
-	background-color: #111;
-}
 
 .new-listing-instructions {
 	color: #999;

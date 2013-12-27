@@ -15,25 +15,19 @@
 	<ul class="table-view listings">
 		<li class="table-view-cell" ng-repeat="listing in listings">
 			<a ng-click="$navigate.go('/activity-item/{{ listing.id }}', 'slide')">
-				<table>
-					<tr>
-						<td>
-							<span class="listing-badge {{ listing.get('state') }} lb-ab">{{ listing.get('state') }}</span>
-							<img ng-src="{{ listing.get('photos')[0].get('photo').url() }}" width="100px" height="100px" />
-						</td>
-						<td valign="top" style="padding-left:10px;">
-							<h4>{{ listing.get("sellerDescription") }}</h4>
-							<p style="color:#777;">
-                            {{ listing.get("condition") }}
-                            </p>
-                            <p style="color:#777;">
+                <div class="row-fluid">
+                    <div class="span9">
+                        <h4>{{ listing.get("sellerDescription") }}</h4>
+                        <p>
+                            <span class="listing-state {{ listing.get('state') }}">{{ listing.get('state') }}</span>
                             {{ listing.get("sellerPrice") | currency }}
-                            <p>
-						</td>
-					</tr>
-				</table>
+                        <p>
+                    </div>
+                    <div class="span3">
+                        <img ng-src="{{ listing.get('photos')[0].get('photo').url() }}" width="100px" height="100px" />
+                    </div>
+                </div>
 			</a>
-            <span class="chevron"></span>
 		</li>
 	</ul>
 </div>
