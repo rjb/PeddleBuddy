@@ -114,13 +114,14 @@ automizeApp.factory('Parse', function() {
                 errorCallback(error);
             });
 		},
-		getListings: function(successCallback, errorCallback) {
+		getListings: function(limit, skip, successCallback, errorCallback) {
 			var Listing = Parse.Object.extend("Listing");
 			var query = new Parse.Query(Listing);
             
             query.include("photos");
 			query.descending("updatedAt");
-            query.limit(10);
+            query.limit(limit);
+            query.skip(skip);
                     
             query.find().then(function(results) {
                 successCallback(results);

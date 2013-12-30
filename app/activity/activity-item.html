@@ -8,7 +8,7 @@
 <div id="overlaySpinner" ng-show="spinning" us-spinner="opts"></div>
 
 <div class="content content-padded">
-    <div ng-init="getListing()">
+    <div>
         <div class="row-fluid">
             <div class="span12">
                 <p style="color:#777;">{{ listing.createdAt | date:'mediumDate' }}</p>
@@ -18,9 +18,9 @@
                 <p ng-show="sellerFlaws">Flaws: {{ sellerFlaws }}</p>
             </div>
         </div>
-        <br/><br/>
-        <div ng-repeat="photo in photos">
-            <div class="listing-photo"><img ng-src="{{ photo.get('photo').url() }}" width="90px" /></div>
+        <br/>
+        <div>
+            <div class="listing-photo"><img ng-src="{{ photos[0].get('photo').url() }}" width="300px" /></div>
         </div>
 	</div>
     <div style="clear:both;">&nbsp;</div>

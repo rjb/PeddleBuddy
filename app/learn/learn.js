@@ -2,6 +2,15 @@ automizeApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/learn', {
         controller:'LearnController',
         templateUrl:'app/learn/learn.html'
+    }).when('/learn-what-sells', {
+        controller:'LearnController',
+        templateUrl:'app/learn/learn-what-sells.html'
+    }).when('/learn-get-paid', {
+        controller:'LearnController',
+        templateUrl:'app/learn/learn-get-paid.html'
+    }).when('/learn-returns', {
+        controller:'LearnController',
+        templateUrl:'app/learn/learn-returns.html'
     });
 }])
 

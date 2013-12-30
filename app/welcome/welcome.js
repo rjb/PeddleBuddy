@@ -7,6 +7,7 @@ automizeApp.config(['$routeProvider', function($routeProvider) {
 
 automizeApp.controller('WelcomeController', function($scope, $navigate) {
     $scope.$navigate = $navigate;
+    $scope.myName = "Raffy Banks";
                        
     $scope.$on('$viewContentLoaded', function() {
         $scope._style = document.createElement('link');

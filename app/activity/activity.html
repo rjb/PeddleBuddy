@@ -5,10 +5,10 @@
 <div id="overlay" ng-show="spinning"></div>
 <div id="overlaySpinner" ng-show="spinning" us-spinner="opts"></div>
 
-<div class="content" ng-init="getListings()">
-    <div  ng-show="listings == 0 && !spinning" class="content-padded center">
-        <br/><br/>
-        <h3>No activity yet</h3>
+<div class="content">
+    <div  ng-show="!hasListings() && !spinning" class="content-padded center">
+        <h3>You have nothing for sale yet</h3>
+        <p>Click the button below to get started.</p>
         <br/>
         <a ng-click="$navigate.go('/sell', 'modal')" class="btn button button-block button-primary button-filled">Sell your first item</a>
     </div>
@@ -30,6 +30,9 @@
 			</a>
 		</li>
 	</ul>
+    <div class="content-padded load-more" ng-show="hasMore()">
+        <button class="btn button button-primary button-block button-filled" ng-click="showMore()">show more...</button>
+    </div>
 </div>
 
 <nav class="bar-tab">

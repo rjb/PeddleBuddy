@@ -13,9 +13,9 @@ automizeApp.controller('SellController', function($scope, $routeParams, $locatio
                        
     $scope.addListing = function() {
         Spinner.start();
-        if($scope.newListingPhotos.length < 1) {
+        if($scope.newListingPhotos.length < 4 || $scope.newListingPhotos.length > 8) {
             Spinner.stop();
-            navigator.notification.alert("Take 4 to 8 photos of what you're selling.", function() {}, "Snap Some Photos", "OK");
+            navigator.notification.alert("Take 4 to 8 photos.", function() {}, "Snap more photos please", "OK");
         } else if($scope.addListingForm.sellerDescription.$invalid) {
             Spinner.stop();
             navigator.notification.alert(Parse.sellerDescInvalid.message, function() {}, Parse.sellerDescInvalid.title, "OK");
@@ -90,6 +90,7 @@ automizeApp.controller('SellController', function($scope, $routeParams, $locatio
                        
     function init() {
         $scope.user = Parse.getUser();
+        
     };
                        
     var newListingImageData = [];

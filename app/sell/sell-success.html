@@ -1,7 +1,4 @@
 <header class="bar-nav">
-    <a class="button" ng-click="$navigate.go('/', 'slide')">
-        Home
-    </a>
   	<h1 class="title">Huzzah!</h1>
 </header>
 
@@ -9,11 +6,18 @@
 <div id="overlaySpinner" ng-show="spinning" us-spinner="opts"></div>
 
 <div class="content content-padded gray-background">
-    <br/>
     <h3>Success!</h3>
-    <p>Your item has been successfully listed! We'll have your item up for sale within 24 hours ;)</p>
-    <br/><br/>
+    <p>
+        We'll let you know as soon as it sells and schedule a pickup.
+    </p>
+    <br/>
     <a ng-click="$navigate.back()" class="btn button button-block button-primary button-filled">
         Sell Another Item
     </a>
+    <br/>
+    <div class="center">
+        <a  ng-click="$navigate.go('/', 'slide')">
+            Back to Dashboard
+        </a>
+    </div>
 </div>

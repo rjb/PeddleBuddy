@@ -13,7 +13,7 @@
 }
 
 .listing-state.Sold {
-	background-color:#e1806f;
+	background-color:rgba(51, 219, 182, 1);
 }
 
 .listing-state.Live {
@@ -22,4 +22,12 @@
 
 .listing-state.Pending {
 	background-color:#999999;
+}
+
+.listing-state.Error {
+	background-color:#e1806f;
+}
+
+.load-more {
+    margin-top:8px;
 }
