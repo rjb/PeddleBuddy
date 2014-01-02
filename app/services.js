@@ -98,8 +98,7 @@ automizeApp.factory('Parse', function() {
             Parse.Promise.when(promiseOne).then(function() {
                 // Listing
                 var privateListing = new Listing();
-               
-                privateListing.setACL(new Parse.ACL(Parse.User.current()));
+ 
                 privateListing.set("sellerDescription", _listing.sellerDescription);
                 privateListing.set("sellerPrice", _listing.sellerPrice);
                 privateListing.set("condition", _listing.condition);
