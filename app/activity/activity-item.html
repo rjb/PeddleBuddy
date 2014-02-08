@@ -19,9 +19,9 @@
             </div>
         </div>
         <br/>
-        <div>
-            <div class="listing-photo"><img ng-src="{{ photos[0].get('photo').url() }}" width="300px" /></div>
-        </div>
+        <ul class="activity-item-photos" ng-repeat="photo in photos">
+            <li><img ng-src="{{ photo.get('thumbnail').url() }}" width="100px" height="100px" /></li>
+        </ul>
 	</div>
     <div style="clear:both;">&nbsp;</div>
     <div ng-hide="spinning">

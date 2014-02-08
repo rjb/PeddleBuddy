@@ -5,13 +5,33 @@
 <div id="overlay" ng-show="spinning"></div>
 <div id="overlaySpinner" ng-show="spinning" us-spinner="opts"></div>
 
-<div class="content content-padded gray-background">
-    <h3>Success!</h3>
-    <p>
-        We'll let you know as soon as it sells and schedule a pickup.
-    </p>
+<div class="content content-padded">
+    <h3>What next?</h3>
+    <ul class="table-view inset selling-form learn-more">
+        <li class="table-view-cell list-divider">1. We'll sell your item</li>
+        <li class="table-view-cell">
+            <p>
+                Now that we have the photos and details we get it ready to sell.
+            </p>
+            <p>
+                We'll write and design a listing, enhance the photos and set a price, if you have not set one of your own.
+            </p>
+
+        </li>
+    </ul>
     <br/>
-    <a ng-click="$navigate.back()" class="btn button button-block button-primary button-filled">
+    
+    <ul class="table-view inset selling-form learn-more">
+        <li class="table-view-cell list-divider">2. We schedule a pickup</li>
+        <li class="table-view-cell">
+            <p>
+             As soon as it sells we'll schedule a day and time for one of our PeddleBuddy Couriers to pick it, pack it and ship it to the buyer for you.
+            </p>
+        </li>
+    </ul>
+
+    <br/>
+    <a ng-click="$navigate.go('/sell', 'modal')" class="btn button button-block button-primary button-filled">
         Sell Another Item
     </a>
     <br/>
@@ -20,4 +40,5 @@
             Go to Dashboard
         </a>
     </div>
+    <br/>
 </div>

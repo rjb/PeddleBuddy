@@ -31,3 +31,10 @@
 .load-more {
     margin-top:8px;
 }
+
+.activity-item-photos, .activity-item-photos li {
+    display: inline;
+    text-decoration: none;
+    padding:0;
+    margin:0;
+}

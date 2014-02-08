@@ -70,7 +70,7 @@ select {
 }
  
 .content, .table-view .table-view-divider {
-    background-color:#F8F8F8;
+    background-color:#F0F0F0;
 }
  
 .table-view .table-view-cell > a:not([class*="button"]):active {
@@ -105,7 +105,7 @@ select {
 
 .new-listing-photos {
     display: inline;
-    padding-right: 5px;
+    padding-right: 2px;
 }
  
 .new-listing-note {

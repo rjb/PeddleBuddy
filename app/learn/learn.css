@@ -1,5 +1,4 @@
 .tab-holder { display:none; }
-.content, .bar-standard { padding-bottom:0px; }
 
 .welcome-more {
     margin-top: 35px;
@@ -24,4 +23,8 @@
 
 .welcome-tab .signup-tab {
     background-color:#297AFC;
+}
+
+.learn-more .list-divider {
+    font-weight:bold;
 }

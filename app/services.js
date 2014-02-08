@@ -69,8 +69,8 @@ automizeApp.factory('Parse', function() {
             message: "Please enter a short description of what you are selling."
         },
         photoInvalid: {
-            title: "Too Many Photos",
-            message: "Number of photos allowed is 8."
+            title: "That's Plenty",
+            message: "All we need is 8 photos."
         },
 		addListing: function(_listing, _photos, successCallback, errorCallback) {
             // TODO: Create anonymous promise and put for loop in first then.
@@ -83,13 +83,14 @@ automizeApp.factory('Parse', function() {
             var thePhotos = [];
             
             for(var i=0; i<_photos.length; i++) {
-                var name = "listing-photo.jpg";
+                var name = "original.jpg";
                 var file = _photos[i];
                 
                 var parseFile = new Parse.File(name, {base64:file});
                     
                 var privateListingPhoto = new ListingPhoto();
-                privateListingPhoto.set("photo", parseFile);
+                //privateListingPhoto.set("photo", parseFile);
+                privateListingPhoto.set("original", parseFile);
                     
                 promiseOne.push(privateListingPhoto.save());
                 thePhotos.push(privateListingPhoto);
